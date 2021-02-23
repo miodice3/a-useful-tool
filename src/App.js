@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import CarbonContainer from './containers/carbonContainer'
+import CalculatorContainer from './containers/calculatorContainer'
 
 function App() {
   return (
       <div>
-        hello world
+        Carbon Intensity Forecaster
+        <CarbonContainer />
+        <CalculatorContainer />
       </div>
+
   );
 }
 
