@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Schedule from '../components/schedule'
+// import Schedule from '../components/schedule'
+import ApexChart from '../components/graph'
+
 
 import { connect } from 'react-redux';
 
@@ -11,8 +13,7 @@ class ScheduleContainer extends Component {
                 <br />
                 ScheduleContainer Component <br />
                 <br />
-            
-                {this.props.forecasts ? this.props.forecasts.map((forecast, index) => <Schedule key={index} forecast={forecast}/>) : "fetching data"}
+                <ApexChart forecasts={this.props.forecasts}/>
             </div>
         )
     }

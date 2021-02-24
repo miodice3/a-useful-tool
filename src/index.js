@@ -6,11 +6,21 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, } from 'redux';
+// import otherMiddleware from 'other-middleware';
+import thunk from 'redux-thunk'
 import reducer from './reducers/reducer';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// compose (
+//   applyMiddleware(thunk, otherMiddleware()),
+//   window.devToolsExtension ? window.devToolsExtension() : f => f
+// )
 
+const store = createStore(reducer, applyMiddleware(thunk));
+
+
+
+// , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ReactDOM.render(
   // <React.StrictMode>
 
