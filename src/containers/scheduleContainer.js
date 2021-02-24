@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import Schedule from '../components/schedule'
 
+import { connect } from 'react-redux';
+
 class ScheduleContainer extends Component {
+
     render(){
         return(
             <div>
                 <br />
                 ScheduleContainer Component <br />
                 <br />
-                <Schedule />
+            
+                {this.props.forecasts ? this.props.forecasts.map((forecast, index) => <Schedule key={index} forecast={forecast}/>) : "fetching data"}
             </div>
         )
     }
 }
 
-export default ScheduleContainer
+const mapStateToProps = (state) => ({
+    forecasts: state.forecasts
+})
+
+export default connect(mapStateToProps)(ScheduleContainer)

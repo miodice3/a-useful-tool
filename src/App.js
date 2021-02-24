@@ -8,12 +8,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-  componentDidMount(){
-    fetch('https://api.carbonintensity.org.uk/intensity/2021-02-23T21:15Z/fw48h')
-    .then(response=>response.json())
-    .then((response)=>console.log(response))
-  }
-
   render() {
     
     return (

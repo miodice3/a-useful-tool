@@ -1,10 +1,14 @@
 
 
-function Schedule() {
+function Schedule(props) {
     return (
+  
         <div>
-          I will be the individual schedule component. There will be as many of me as there are returned time increments from the API<br />
-          I will show your local time and the grams of carbon per kwh produced.
+          from: {props.forecast.from} <br />
+          to: {props.forecast.to} <br />
+
+          forecasted {props.forecast.intensity.forecast} grams / kwh: , index: {props.forecast.intensity.index}<br />
+          actual: {props.forecast.intensity.actual}<br /><br />
         </div>
     );
   }
