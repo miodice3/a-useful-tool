@@ -3,18 +3,19 @@ import React, { Component } from 'react';
 class YearInput extends Component {
 
     renderForm = () =>{
-        return this.props.years.map(year=><option value="test">{year.text[0]}</option>)
-
+        return this.props.years.map((year, index)=><option key={index} value={year.value[0]}>{year.text[0]}</option>)
     }
 
+    handleChange = (event) =>{
+        event.preventDefault()
+        this.props.getManufacturerAPI(event.target.value)
+    }
 
     render(){
-        
         return(
-            <div>
-                {console.log("within year render component", this.props.years[0].text[0])}
+            <div onChange={this.handleChange}>
                 <select>
-                {/* <option>{this.props.years[0].text[0]}</option> */}
+                <option value="null">Select Year</option>
                 {this.renderForm()}
                 </select>
             </div>
@@ -23,11 +24,3 @@ class YearInput extends Component {
 }
 
 export default YearInput
-
-{/* <label>Select Vehicle Year</label><br/>
-<select>
-    
-    <option value="grape">Grape</option>
-    <option value="grapefruit">grapefruit</option>
-    <option value="test">test</option>
-</select> */}

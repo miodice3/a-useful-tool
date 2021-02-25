@@ -10,9 +10,13 @@ class VehicleSelectionContainer extends Component {
         this.props.getYearAPI()
     }
 
+    getManufacturerAPI = (event)=> {
+        console.log("year was submitted", event)
+    }
+
     renderYear = () => {
         if (this.props.requesting_year === false){
-        return <YearInput years={this.props.years}/>
+        return <YearInput getManufacturerAPI ={this.getManufacturerAPI} years={this.props.years}/>
     } else {
         return "loading data"
     }
@@ -42,15 +46,4 @@ function mapDispatchToProps(dispatch){
     }  
 }
 
-// function mapDispatchToProps(dispatch){
-//     return {
-//         setAddForecastWithinDispatch: () => dispatch(nationalGridAPI()),
-//         getYears: () => dispatch(getYearsAPI()),
-//         getManufacture: () => dispatch(getManufactureAPI()),
-//         getModel: () => dispatch(getModelAPI()),
-//         getVehicle: () => dispatch(getVehicleAPI()),
-//     }  
-// }
-
-// export default VehicleSelectionContainer
 export default connect(mapStateToProps, mapDispatchToProps)(VehicleSelectionContainer)
