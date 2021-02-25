@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import CarbonFetch from '../components/carbonFetch';
 import { nationalGridAPI } from '../API/nationalGrid';
 import ScheduleContainer from '../containers/scheduleContainer';
+import VehicleSelectionContainer from '../containers/vehicleSelection'
 
 import { connect } from 'react-redux';
 
@@ -19,6 +20,7 @@ class CarbonContainer extends Component {
                 <br />
                 CarbonContainer Component <br />
                 {/* <TimeZoneSelection /> */}
+                <VehicleSelectionContainer />
                 <br />
                 <ScheduleContainer />
             </div>

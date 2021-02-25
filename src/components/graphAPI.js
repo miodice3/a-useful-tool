@@ -92,8 +92,10 @@ function Graph(props){
         series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
 
-        seriesB[0].data = props.forecasts.map(()=>(Math.round(8890/props.gasreg)))
-        seriesB[1].data = props.forecasts.map(()=>(Math.round(8890/props.gasfreeze)))
+        seriesB[0].data = props.forecasts.map(()=>(Math.round(8887/props.gasreg)))
+        seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze)))
+        //8887gr/gal diesel office transportation and air quality EPA-420-F-14-040
+        //10180gr/gal diesel office transportation and air quality EPA-420-F-14-040
         seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
         seriesB[3].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwhfreeze)))
         optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
@@ -103,9 +105,14 @@ function Graph(props){
     return(
         <div>
             <ReactApexChart options={options} series={series} type="area" height={350} />
+            {/* this should eventually update based off vehicle selection, props change from parent. */}
+            {/* fuel price calcs https://www.fueleconomy.gov/ws/rest/fuelprices */}
             <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} />
+            *8,887gr CO2/gal reg fuel,  10,180gr CO2/gal diesel, CO2/mi methodology used: EPA-420-f-14-040
         </div>
     )
 }
+
+
 
 export default Graph;
