@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 
-class ManufacturerInput extends Component {
+class ModelInput extends Component {
 
     renderForm = () =>{
-        return this.props.manufacturers.map((manufacturer, index)=><option key={index} value={manufacturer[0]}>{manufacturer[0]}</option>)
+        // debugger
+        return this.props.models.map((model, index)=><option key={index} value={model}>{model}</option>)
     }
 
     handleChange = (event) =>{
         event.preventDefault()
-        console.log("this manufacturer was selected: ", event.target.value)
+        debugger
+        // console.log("this model was selected: ", event.target.value)
         this.props.getModelAPI(event.target.value)
     }
 
     render(){
+        // debugger
         return(
             <div onChange={this.handleChange}>
                 <select>
-                <option value="null">Select Manufacturer</option>
+                <option value="null">Select Model</option>
                 {this.renderForm()}
                 </select>
             </div>
@@ -24,4 +27,4 @@ class ManufacturerInput extends Component {
     }
 }
 
-export default ManufacturerInput
+export default ModelInput

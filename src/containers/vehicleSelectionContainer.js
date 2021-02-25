@@ -5,17 +5,17 @@ import getYearAPI from '../actions/getYearAPI'
 import ManufacturerInput from '../components/manufacturerInput'
 import getManufacturerAPI from '../actions/getManufacturerAPI'
 
+import ModelInput from '../components/modelInput'
+import getModelAPI from '../actions/getModelAPI'
+
 import { connect } from 'react-redux';
 
 class VehicleSelectionContainer extends Component {
 
+    state = {}
+
     componentDidMount(){
         this.props.getYearAPI()
-    }
-
-    getManufacturerAPI = (event)=> {
-        console.log("year was submitted", event)
-        this.props.getManufacturerAPI(event)
     }
 
     renderYear = () => {
@@ -26,13 +26,33 @@ class VehicleSelectionContainer extends Component {
             }
     }
 
+    getManufacturerAPI = (event)=> {
+        this.setState({
+            selected_year: event
+        })
+        console.log("year was submitted", event)
+        this.props.getManufacturerAPI(event)
+    }
+
     renderManufacturers = () =>{
         if (this.props.requesting_manufacturer === false){
-            return <ManufacturerInput manufacturers={this.props.manufacturers}/>
+            return <ManufacturerInput getModelAPI={this.getModelAPI} manufacturers={this.props.manufacturers}/>
+            }
         }
-        // } else {
-        //     return "loading manufacturers"
-        // }
+    
+    getModelAPI = (event)=> {
+        console.log("manufacture selected!!", event)
+        this.setState({
+            selected_mfg: event
+        })
+        console.log("within callback function, local states year is ", this.state.selected_year, "current local state mfg selected is: ", event)
+        this.props.getModelAPI(this.state.selected_year, event)
+    }
+
+    renderModels = () =>{
+        if (this.props.requesting_model === false){
+            return <ModelInput models={this.props.models}/>
+            }
         }
 
     render(){
@@ -40,6 +60,7 @@ class VehicleSelectionContainer extends Component {
             <div>
                 {this.renderYear()}
                 {this.renderManufacturers()}
+                {this.renderModels()}
             </div>
         )
     }
@@ -50,13 +71,17 @@ const mapStateToProps = (state) => ({
     requesting_year: state.requesting_year,
 
     manufacturers: state.manufacturers,
-    requesting_manufacturer: state.requesting_manufacturer
+    requesting_manufacturer: state.requesting_manufacturer,
+
+    models: state.models,
+    requesting_model: state.requesting_model
 })
 
 function mapDispatchToProps(dispatch){
     return {
         getYearAPI: () => dispatch(getYearAPI()),
-        getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected))
+        getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
+        getModelAPI: (year, model) => dispatch(getModelAPI(year, model))
     }  
 }
 

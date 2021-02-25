@@ -41,6 +41,20 @@ export default function reducer(state={}, action){
                 requesting_manufacturer: false
                 }
 
+        case 'START_GET_MODEL_REQUEST':
+            return {
+                ...state,
+                requesting_model: true
+            } 
+
+        case 'ADD_MODEL':
+            debugger
+            return {
+                ...state,
+                models: action.payload.menuItems.menuItem.map(model => model.text[0]),
+                requesting_model: false
+                }
+
         default:
             return state;
     }
