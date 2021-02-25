@@ -27,6 +27,20 @@ export default function reducer(state={}, action){
                 requesting_year: false
                 }
 
+        case 'START_GET_MANUFACTURER_REQUEST':
+            return {
+                ...state,
+                requesting_manufacturer: true
+            } 
+
+        case 'ADD_MANUFACTURER':
+            // debugger
+            return {
+                ...state,
+                manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),
+                requesting_manufacturer: false
+                }
+
         default:
             return state;
     }
