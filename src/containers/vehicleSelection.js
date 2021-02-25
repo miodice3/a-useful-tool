@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import YearInput from '../components/yearInput'
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 class VehicleSelectionContainer extends Component {
 
     componentDidMount(){
-        console.log("this is vehicle selection container")
+
+        // console.log("this is vehicle selection container")
     }
 
     render(){

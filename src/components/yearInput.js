@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 class YearInput extends Component {
 
     componentDidMount(){
-        console.log("this is year selection")
+        const url = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year"
+        fetch(url)
+        .then((response) => response.text())
+        .then((resp) => {
+            console.log(resp);
+        })
     }
 
     render(){
