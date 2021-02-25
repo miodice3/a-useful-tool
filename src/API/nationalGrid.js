@@ -1,11 +1,3 @@
-// export function nationalGridAPI(){
-//     return function (dispatch){
-//         fetch('https://api.carbonintensity.org.uk/intensity/2021-02-23T21:15Z/fw48h')
-//         .then(response=>response.json())
-//         .then(json=> this.props.addForecast(json.data))
-//     }
-//   }
-
 export function nationalGridAPI(){
     return (dispatch) => {
         dispatch({ type: 'START_ADD_FORECAST_REQUEST' });

@@ -3,28 +3,19 @@ import ReactApexChart from 'react-apexcharts';
 
 
 function Graph(props){
-
-    // const forecasted = props.forecasts.map(forecast => (forecast.intensity.forecasted))
-    if (props.forecasted) {
-      console.log("props.forecasted was apparently true")
-      console.log(props)
-    } else {
-      console.log("props.forecasted was apparently false")
-      console.log(props)
-    }
-    // debugger
-
-    // debugger
-
-    const series = [{
+   
+    let series = [{
         name: 'Forecasted',
-        data: [31, 40, 28, 51, 42, 109, 100]
+        data: [0, 0, 0, 0, 0, 0, 0]
       }, {
         name: 'Actual',
-        data: [11, 32, 45, 32, 34, 52, 41]
+        data: [0, 0, 0, 0, 0, 0, 0]
+      }, {
+        name: 'test',
+        data: [0, 0, 0, 0, 0, 0, 0]
       }];
 
-    const options = {
+    let options = {
         chart: {
           height: 350,
           type: 'area'
@@ -44,6 +35,20 @@ function Graph(props){
             format: 'dd/MM/yy HH:mm'
           },
         },
+      }
+
+      if (props.forecasts === undefined) {
+        console.log("AA")
+        console.log(props.forecasts)
+      } else {
+        console.log("BB")
+        console.log(props.forecasts)
+        // debugger
+        series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
+        series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
+        series[2].data = props.forecasts.map(forecast=>forecast.intensity.actual+25)
+        options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
+        // debugger
       }
 
     return(
