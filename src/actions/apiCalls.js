@@ -8,3 +8,14 @@ export function nationalGridAPI(){
         })
     }
   }
+
+
+
+//   componentDidMount(){
+//     const url = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year"
+//     fetch(url)
+//     .then((response) => response.text())
+//     .then((resp) => {
+//         console.log(resp);
+//     })
+// }

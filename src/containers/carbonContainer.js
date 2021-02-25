@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import TimeZoneSelection from '../components/timeZone';
-// import CarbonFetch from '../components/carbonFetch';
-import { nationalGridAPI } from '../API/nationalGrid';
+import { nationalGridAPI } from '../actions/apiCalls';
 import ScheduleContainer from '../containers/scheduleContainer';
-import VehicleSelectionContainer from '../containers/vehicleSelection'
+import VehicleSelectionContainer from './vehicleSelectionContainer'
 
 import { connect } from 'react-redux';
 
@@ -11,7 +9,6 @@ class CarbonContainer extends Component {
 
     componentDidMount(){
         this.props.setAddForecastWithinDispatch()
-        // console.log("this is props: ", this.props)
     }
 
     render(){
@@ -19,7 +16,6 @@ class CarbonContainer extends Component {
             <div>
                 <br />
                 CarbonContainer Component <br />
-                {/* <TimeZoneSelection /> */}
                 <VehicleSelectionContainer />
                 <br />
                 <ScheduleContainer />
@@ -35,4 +31,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(null, mapDispatchToProps)(CarbonContainer)
-// export default connect(null)(CarbonContainer)
