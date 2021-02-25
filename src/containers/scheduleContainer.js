@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import Schedule from '../components/schedule'
-import ApexChart from '../components/graph'
+import ApexChart from '../components/graphAPI'
+// import ApexChart from '../components/graphsample'
+
 
 
 import { connect } from 'react-redux';

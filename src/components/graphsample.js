@@ -42,7 +42,3 @@ function Graph(){
 }
 
 export default Graph;
-
-// npm i apexcharts
-// npm install apexcharts --save
-// 9.27
