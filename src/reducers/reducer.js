@@ -62,7 +62,7 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_VEHICLE':
-            debugger
+            // debugger
             return {
                 ...state,
                 vehicle: action.payload.menuItems.menuItem[0].value[0],

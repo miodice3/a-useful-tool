@@ -10,6 +10,8 @@ import getModelAPI from '../actions/getModelAPI'
 
 import getVehicleAPI from '../actions/getVehicleAPI'
 
+import Vehicle from '../components/vehicle'
+
 import { connect } from 'react-redux';
 
 class VehicleSelectionContainer extends Component {
@@ -66,12 +68,19 @@ class VehicleSelectionContainer extends Component {
         this.props.getVehicleAPI(this.state.selected_year, this.state.selected_mfg, event)
     }
 
+    renderVehicle = () =>{
+        if (this.props.requesting_vehicle === false){
+            return <Vehicle vehicle={this.props.vehicle}/>
+            }
+        }
+
     render(){
         return(
             <div>
                 {this.renderYear()}
                 {this.renderManufacturers()}
                 {this.renderModels()}
+                {this.renderVehicle()}
             </div>
         )
     }
@@ -85,7 +94,10 @@ const mapStateToProps = (state) => ({
     requesting_manufacturer: state.requesting_manufacturer,
 
     models: state.models,
-    requesting_model: state.requesting_model
+    requesting_model: state.requesting_model,
+
+    vehicle: state.vehicle,
+    requesting_vehicle: state.requesting_vehicle
 })
 
 function mapDispatchToProps(dispatch){
