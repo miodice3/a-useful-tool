@@ -32,9 +32,6 @@ function Graph(props){
           type: 'datetime',
           categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
         },
-        yaxis: {
-          text: "Grams of co2"
-        },
         title: {
           text: "Grams co2 per kWh",
           align: 'center',
@@ -49,20 +46,17 @@ function Graph(props){
       }
 
       let seriesB = [{
-        name: 'g co2 / mi @ 25 mpg',
-        data: [356, 356, 356, 356, 356, 356, 356]
+        name: 'gas car selected: g co2 / mi @ 25 mpg',
+        data: [1, 1]
       }, {
-        name: 'FREEZE g co2 / mi @ 21.7 mpg',
-        data: [409, 409, 409, 409, 409, 409, 409]
+        name: 'gas car selected: FREEZE g co2 / mi @ 25 mpg',
+        data: [0, 0]
       }, {
-        name: 'min g co2 / mi tsla m3 rwd base',
-        data: [21, 21, 21, 21, 21, 21, 21]
+        name: 'tsla m3 rwd base: min g co2 / mi',
+        data: [0, 0]
       }, {
-        name: 'max g co2 / mi tsla m3 rwd base',
-        data: [51, 51, 51, 51, 51, 51, 51]
-      }, {
-        name: 'FREEZE g co2 / mi tsla m3 rwd base',
-        data: [34, 34, 34, 34, 34, 34, 34]
+        name: 'freeze & dirty electric: tsla m3 rwd base: max g co2 / mi',
+        data: [0, 0]
       }];
 
     let optionsB = {
@@ -78,36 +72,32 @@ function Graph(props){
         },
         xaxis: {
           type: 'datetime',
-          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-        },
-        yaxis: {
-          text: "Grams of co2"
+          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"]
         },
         title: {
-          text: "Grams co2 per kWh",
+          text: "Grams co2 per mile driven, using estimate co2 emissions",
           align: 'center',
           style:{fontSize: 25}
         },
         tooltip: {
           x: {
-            // format: 'dd/MM/yy HH:mm'
             format: 'yy/MM/dd HH:mm'
           },
         },
       }
 
       if (props.forecasts === undefined) {
-        console.log("AA")
-        console.log(props.forecasts)
       } else {
-        console.log("BB")
-        console.log(props.forecasts)
-        // debugger
         series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
         series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
-        // series[2].data = props.forecasts.map(forecast=>forecast.intensity.actual+25)
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
-        // debugger
+
+        seriesB[0].data = props.forecasts.map(()=>(Math.round(8890/props.gasreg)))
+        seriesB[1].data = props.forecasts.map(()=>(Math.round(8890/props.gasfreeze)))
+        seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
+        seriesB[3].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwhfreeze)))
+        optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
+        console.log(seriesB)
       }
 
     return(

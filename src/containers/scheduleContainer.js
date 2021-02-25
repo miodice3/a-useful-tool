@@ -15,7 +15,7 @@ class ScheduleContainer extends Component {
                 <br />
                 ScheduleContainer Component <br />
                 <br />
-                <ApexChart forecasts={this.props.forecasts}/>
+                <ApexChart forecasts={this.props.forecasts} gasreg={25} gasfreeze={21} mpkwh={4} mpkwhfreeze={2.7}/>
             </div>
         )
     }
