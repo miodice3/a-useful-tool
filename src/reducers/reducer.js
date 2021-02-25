@@ -48,11 +48,25 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_MODEL':
-            debugger
+            // debugger
             return {
                 ...state,
                 models: action.payload.menuItems.menuItem.map(model => model.text[0]),
                 requesting_model: false
+                }
+
+        case 'START_GET_VEHICLE_REQUEST':
+            return {
+                ...state,
+                requesting_vehicle: true
+            } 
+
+        case 'ADD_VEHICLE':
+            debugger
+            return {
+                ...state,
+                vehicle: action.payload.menuItems.menuItem[0].value[0],
+                requesting_vehicle: false
                 }
 
         default:

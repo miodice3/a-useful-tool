@@ -8,6 +8,8 @@ import getManufacturerAPI from '../actions/getManufacturerAPI'
 import ModelInput from '../components/modelInput'
 import getModelAPI from '../actions/getModelAPI'
 
+import getVehicleAPI from '../actions/getVehicleAPI'
+
 import { connect } from 'react-redux';
 
 class VehicleSelectionContainer extends Component {
@@ -45,15 +47,24 @@ class VehicleSelectionContainer extends Component {
         this.setState({
             selected_mfg: event
         })
-        console.log("within callback function, local states year is ", this.state.selected_year, "current local state mfg selected is: ", event)
+        // console.log("within callback function, local states year is ", this.state.selected_year, "current local state mfg selected is: ", event)
         this.props.getModelAPI(this.state.selected_year, event)
     }
 
     renderModels = () =>{
         if (this.props.requesting_model === false){
-            return <ModelInput models={this.props.models}/>
+            return <ModelInput getVehicleAPI={this.getVehicleAPI} models={this.props.models}/>
             }
         }
+
+    getVehicleAPI = (event)=> {
+        console.log("vehicle selected!!", event)
+        this.setState({
+            selected_vehicle: event
+        })
+        // console.log("within callback function, local states year is ", this.state.selected_year, "current local state mfg selected is: ", event)
+        this.props.getVehicleAPI(this.state.selected_year, this.state.selected_mfg, event)
+    }
 
     render(){
         return(
@@ -81,7 +92,8 @@ function mapDispatchToProps(dispatch){
     return {
         getYearAPI: () => dispatch(getYearAPI()),
         getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
-        getModelAPI: (year, model) => dispatch(getModelAPI(year, model))
+        getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
+        getVehicleAPI: (year, manufacture, model) => dispatch(getVehicleAPI(year, manufacture, model)),
     }  
 }
 
