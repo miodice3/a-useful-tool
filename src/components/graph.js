@@ -10,10 +10,12 @@ function Graph(props){
       }, {
         name: 'Actual',
         data: [0, 0, 0, 0, 0, 0, 0]
-      }, {
-        name: 'test',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      }];
+      }
+      // {
+      //   name: 'test',
+      //   data: [0, 0, 0, 0, 0, 0, 0]
+      // }
+    ];
 
     let options = {
         chart: {
@@ -30,9 +32,18 @@ function Graph(props){
           type: 'datetime',
           categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
         },
+        yaxis: {
+          text: "Grams of co2"
+        },
+        title: {
+          text: "Grams co2 per kWh",
+          align: 'center',
+          style:{fontSize: 25}
+        },
         tooltip: {
           x: {
-            format: 'dd/MM/yy HH:mm'
+            // format: 'dd/MM/yy HH:mm'
+            format: 'yy/MM/dd HH:mm'
           },
         },
       }
@@ -46,15 +57,13 @@ function Graph(props){
         // debugger
         series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
         series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
-        series[2].data = props.forecasts.map(forecast=>forecast.intensity.actual+25)
+        // series[2].data = props.forecasts.map(forecast=>forecast.intensity.actual+25)
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
         // debugger
       }
 
     return(
         <div>
-            <h2>graph</h2>
-
             <ReactApexChart options={options} series={series} type="area" height={350} />
         </div>
     )
