@@ -20,7 +20,6 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_YEAR':
-            // debugger
             return {
                 ...state,
                 years: action.payload.menuItems.menuItem.map(year => year),
@@ -34,7 +33,6 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_MANUFACTURER':
-            // debugger
             return {
                 ...state,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),
@@ -48,7 +46,6 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_MODEL':
-            // debugger
             return {
                 ...state,
                 models: action.payload.menuItems.menuItem.map(model => model.text[0]),
@@ -64,7 +61,6 @@ export default function reducer(state={}, action){
             } 
 
         case 'ADD_VEHICLE':
-            // debugger
             return {
                 ...state,
                 vehicle: action.payload.menuItems.menuItem[0].value[0],
@@ -73,14 +69,12 @@ export default function reducer(state={}, action){
                 }
 
             case 'START_GET_DETAIL_REQUEST':
-                // debugger
                 return {
                     ...state,
                     requesting_detail: true
                 } 
     
             case 'ADD_DETAIL':
-                // debugger
                 let watthourspermile
                 let mpkwh
                 if (action.payload.vehicle.fuelType[0] === "Electricity"){
@@ -90,6 +84,9 @@ export default function reducer(state={}, action){
                     return {
                         ...state,
                         vehicle_a_detail_requested: true,
+                        mfg: action.payload.vehicle.make[0],
+                        model: action.payload.vehicle.model[0],
+                        year: action.payload.vehicle.year[0],
                         vehicle_a_emissions: mpkwh,
                         vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
                         requesting_detail: false
@@ -100,6 +97,9 @@ export default function reducer(state={}, action){
                         return {
                             ...state,
                             vehicle_a_detail_requested: true,
+                            mfg: action.payload.vehicle.make[0],
+                            model: action.payload.vehicle.model[0],
+                            year: action.payload.vehicle.year[0],
                             vehicle_a_emissions: action.payload.vehicle.co2TailpipeGpm[0],
                             vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
                             requesting_detail: false

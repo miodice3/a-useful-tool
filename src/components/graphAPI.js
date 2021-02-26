@@ -113,7 +113,6 @@ function Graph(props){
             {/* this should eventually update based off vehicle selection, props change from parent. */}
             {/* fuel price calcs https://www.fueleconomy.gov/ws/rest/fuelprices */}
             <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} />
-            *8,887gr CO2/gal reg fuel,  10,180gr CO2/gal diesel, CO2/mi methodology used: EPA-420-f-14-040
         </div>
     )
 }

@@ -35,7 +35,6 @@ class VehicleSelectionContainer extends PureComponent {
         this.setState({
             selected_year: event
         })
-        console.log("year was submitted", event)
         this.props.getManufacturerAPI(event)
     }
 
@@ -46,7 +45,6 @@ class VehicleSelectionContainer extends PureComponent {
         }
     
     getModelAPI = (event)=> {
-        console.log("manufacture selected!!", event)
         this.setState({
             selected_mfg: event
         })
@@ -60,7 +58,6 @@ class VehicleSelectionContainer extends PureComponent {
         }
 
     getVehicleAPI = (event)=> {
-        console.log("vehicle selected!!", event)
         this.setState({
             selected_vehicle: event
         })

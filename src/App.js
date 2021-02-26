@@ -1,6 +1,5 @@
-import CarbonContainer from './containers/carbonContainer'
-import CalculatorContainer from './containers/calculatorContainer'
-
+import NationalGridContainer from './containers/NationalGridContainer'
+import VehicleSelectionContainer from './containers/vehicleSelectionContainer'
 
 import React from 'react'
 
@@ -13,12 +12,12 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route exact path="/inputs" component={CarbonContainer} />
-          <Route exact path="/calculator" component={CalculatorContainer} />
+          <Route exact path='/' />
+          <Route exact path="/nationalgrid" component={NationalGridContainer} />
+          <Route exact path="/vehicleselection" component={VehicleSelectionContainer} />
         </div>
         </Router>
-    );
-    
+    )
   }
 }
 

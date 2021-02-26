@@ -1,7 +1,8 @@
 export function nationalGridAPI(){
+    
     let pingInfo = new Date()
     pingInfo.setDate(pingInfo.getDate() - 1)
-    // debugger
+    
     let year = pingInfo.getUTCFullYear() // year given is actual year, ISO 8601 no adjustment needede
     
     let month // **range 0-11 ISO 8601 +1 adjustment needed 
