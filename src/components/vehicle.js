@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Vehicle extends Component {
+class Vehicle extends PureComponent {
 
     componentDidMount = () => {
         this.props.getVehcileDetailsAPI()

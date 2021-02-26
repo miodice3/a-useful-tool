@@ -46,7 +46,7 @@ function Graph(props){
       }
 
       let seriesB = [{
-        name: 'gas car selected: g co2 / mi @ 25 mpg',
+        name: `${props.vehicle_a_fuel_type}gas car selected: g co2/mi`,
         data: [0, 0]
       }, {
         name: 'gas car selected: FREEZE g co2 / mi @ 25 mpg',

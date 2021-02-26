@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 class CarbonContainer extends Component {
 
     componentDidMount(){
+        // debugger
         this.props.setAddForecastWithinDispatch()
     }
 

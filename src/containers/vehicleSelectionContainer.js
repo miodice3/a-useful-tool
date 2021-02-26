@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import YearInput from '../components/yearInput'
 import getYearAPI from '../actions/getYearAPI'
 
@@ -15,7 +15,7 @@ import getVehcileDetailsAPI from '../actions/getVehcileDetailsAPI'
 
 import { connect } from 'react-redux';
 
-class VehicleSelectionContainer extends Component {
+class VehicleSelectionContainer extends PureComponent {
 
     state = {}
 
@@ -50,7 +50,6 @@ class VehicleSelectionContainer extends Component {
         this.setState({
             selected_mfg: event
         })
-        // console.log("within callback function, local states year is ", this.state.selected_year, "current local state mfg selected is: ", event)
         this.props.getModelAPI(this.state.selected_year, event)
     }
 
@@ -73,15 +72,13 @@ class VehicleSelectionContainer extends Component {
             return <Vehicle getVehcileDetailsAPI={this.getVehcileDetailsAPI} vehicle={this.props.vehicle}/>
             }
         }
-    
+
     getVehcileDetailsAPI = ()=>{
         this.setState({
             vehicle_selected_id: this.props.vehicle
         })
         this.props.getVehcileDetailsAPI(this.props.vehicle)
     }
-
-    
 
     render(){
         return(
@@ -105,6 +102,7 @@ const mapStateToProps = (state) => ({
     models: state.models,
     requesting_model: state.requesting_model,
 
+    vehicle_a_detail_requested: state.vehicle_a_detail_requested,
     vehicle: state.vehicle,
     requesting_vehicle: state.requesting_vehicle
 })

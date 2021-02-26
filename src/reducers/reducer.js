@@ -58,7 +58,9 @@ export default function reducer(state={}, action){
         case 'START_GET_VEHICLE_REQUEST':
             return {
                 ...state,
-                requesting_vehicle: true
+                vehicle_a_detail_requested: false,
+                requesting_vehicle: true,
+                requesting_detail: false
             } 
 
         case 'ADD_VEHICLE':
@@ -66,23 +68,25 @@ export default function reducer(state={}, action){
             return {
                 ...state,
                 vehicle: action.payload.menuItems.menuItem[0].value[0],
-                requesting_vehicle: false
+                requesting_vehicle: false,
+                requesting_detail: false
                 }
 
             case 'START_GET_DETAIL_REQUEST':
                 // debugger
                 return {
                     ...state,
-                    requesting_vehicle: true
+                    requesting_detail: true
                 } 
     
             case 'ADD_DETAIL':
                 // debugger
                 return {
                     ...state,
+                    vehicle_a_detail_requested: true,
                     vehicle_a_emissions: action.payload.vehicle.co2TailpipeGpm[0],
                     vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
-                    requesting_vehicle: false
+                    requesting_detail: false
                     }
 
         default:
