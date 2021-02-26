@@ -88,16 +88,21 @@ function Graph(props){
 
       if (props.forecasts === undefined) {
       } else {
+
         series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
         series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
 
-        seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a_emissions)))
+        if (props.vehicle_a_fuel_type !== "Electricity"){
+            seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a_emissions)))
+        } else if (props.vehicle_a_fuel_type === "Electricity") {
+            seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
+        }
         // seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze)))
         //8887gr/gal diesel office transportation and air quality EPA-420-F-14-040
         //10180gr/gal diesel office transportation and air quality EPA-420-F-14-040
-        seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
-        seriesB[3].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwhfreeze)))
+        // seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
+        // seriesB[3].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwhfreeze)))
         optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
         console.log(seriesB)
       }

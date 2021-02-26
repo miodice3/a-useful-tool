@@ -81,13 +81,30 @@ export default function reducer(state={}, action){
     
             case 'ADD_DETAIL':
                 // debugger
-                return {
-                    ...state,
-                    vehicle_a_detail_requested: true,
-                    vehicle_a_emissions: action.payload.vehicle.co2TailpipeGpm[0],
-                    vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
-                    requesting_detail: false
-                    }
+                let watthourspermile
+                let mpkwh
+                if (action.payload.vehicle.fuelType[0] === "Electricity"){
+                    watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
+                    mpkwh = 1000 / watthourspermile
+
+                    return {
+                        ...state,
+                        vehicle_a_detail_requested: true,
+                        vehicle_a_emissions: mpkwh,
+                        vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
+                        requesting_detail: false
+                        }
+
+                } else {
+
+                        return {
+                            ...state,
+                            vehicle_a_detail_requested: true,
+                            vehicle_a_emissions: action.payload.vehicle.co2TailpipeGpm[0],
+                            vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
+                            requesting_detail: false
+                            }
+                }
 
         default:
             return state;
