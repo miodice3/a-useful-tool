@@ -19,6 +19,7 @@ class VehicleContainer extends Component {
                     forecasts={this.props.forecasts}
                     vehicle_a_emissions={this.props.vehicle_a_emissions}
                     vehicle_a_fuel_type={this.props.vehicle_a_fuel_type}
+                    state={this.props.state}
                 />
             </div>
         )
