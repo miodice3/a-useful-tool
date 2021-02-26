@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import YearInput from '../components/yearInput'
 import getYearAPI from '../actions/getYearAPI'
 
@@ -15,7 +15,7 @@ import getVehcileDetailsAPI from '../actions/getVehcileDetailsAPI'
 
 import { connect } from 'react-redux';
 
-class VehicleSelectionContainer extends PureComponent {
+class VehicleSelectionContainer extends Component {
 
     state = {}
 

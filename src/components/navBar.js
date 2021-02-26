@@ -10,7 +10,7 @@ function NavBar() {
                     </div>
                     <ul className="nav navbar-nav">
                     <li className="active"><a href="/nationalgrid">UK's Nationl Grid Forecast</a></li>
-                    <li className="active"><a href="/vehicleselection">Vehicle Selection</a></li>
+                    <li className="active"><a href="/vehicles">Vehicle Selection</a></li>
                     </ul>
                 </div>
             </nav>

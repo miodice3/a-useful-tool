@@ -1,5 +1,5 @@
 import NationalGridContainer from './containers/NationalGridContainer'
-import VehicleSelectionContainer from './containers/vehicleSelectionContainer'
+import VehicleContainer from './containers/VehicleContainer'
 
 import React from 'react'
 
@@ -14,7 +14,7 @@ class App extends React.Component {
         <div>
           <Route exact path='/' />
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
-          <Route exact path="/vehicleselection" component={VehicleSelectionContainer} />
+          <Route exact path="/vehicles" component={VehicleContainer} />
         </div>
         </Router>
     )

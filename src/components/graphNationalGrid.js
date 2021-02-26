@@ -1,21 +1,14 @@
-import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-
-function Graph(props){
+function NationalGridGraph(props){
 
     let series = [{
         name: 'Forecasted',
-        data: [0, 0, 0, 0, 0, 0, 0]
+        data: [0, 0]
       }, {
         name: 'Actual',
-        data: [0, 0, 0, 0, 0, 0, 0]
-      }
-      // {
-      //   name: 'test',
-      //   data: [0, 0, 0, 0, 0, 0, 0]
-      // }
-    ];
+        data: [0, 0]
+      }];
 
     let options = {
         chart: {
@@ -30,7 +23,7 @@ function Graph(props){
         },
         xaxis: {
           type: 'datetime',
-          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"]
         },
         title: {
           text: "Grams co2 per kWh",
@@ -39,7 +32,6 @@ function Graph(props){
         },
         tooltip: {
           x: {
-            // format: 'dd/MM/yy HH:mm'
             format: 'yy/MM/dd HH:mm'
           },
         },
@@ -98,11 +90,7 @@ function Graph(props){
         } else if (props.vehicle_a_fuel_type === "Electricity") {
             seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
         }
-        // seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze)))
-        //8887gr/gal diesel office transportation and air quality EPA-420-F-14-040
-        //10180gr/gal diesel office transportation and air quality EPA-420-F-14-040
-        // seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
-        // seriesB[3].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwhfreeze)))
+        // seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze))) // this should become vehicle 2
         optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
         console.log(seriesB)
       }
@@ -110,13 +98,11 @@ function Graph(props){
     return(
         <div>
             <ReactApexChart options={options} series={series} type="area" height={350} />
-            {/* this should eventually update based off vehicle selection, props change from parent. */}
-            {/* fuel price calcs https://www.fueleconomy.gov/ws/rest/fuelprices */}
-            <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} />
+            {/* <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} /> */}
         </div>
     )
 }
 
 
 
-export default Graph;
+export default NationalGridGraph;

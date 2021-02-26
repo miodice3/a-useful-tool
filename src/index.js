@@ -22,7 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
       <NavBar />
       <App />
-    </Provider>,
+    </Provider>
 
   </React.StrictMode>,
   document.getElementById('root')
