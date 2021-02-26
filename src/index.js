@@ -6,21 +6,18 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 // import otherMiddleware from 'other-middleware';
 import thunk from 'redux-thunk'
 import reducer from './reducers/reducer';
 
-// compose (
-//   applyMiddleware(thunk, otherMiddleware()),
-//   window.devToolsExtension ? window.devToolsExtension() : f => f
-// )
+import logger from 'redux-logger'
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, compose(
+  applyMiddleware(thunk, logger),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+)
 
-
-
-// , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ReactDOM.render(
   // <React.StrictMode>
 

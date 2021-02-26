@@ -70,17 +70,18 @@ export default function reducer(state={}, action){
                 }
 
             case 'START_GET_DETAIL_REQUEST':
-                debugger
+                // debugger
                 return {
                     ...state,
                     requesting_vehicle: true
                 } 
     
             case 'ADD_DETAIL':
-                debugger
+                // debugger
                 return {
                     ...state,
-                    vehicle: action.payload.menuItems.menuItem[0].value[0],
+                    vehicle_a_emissions: action.payload.vehicle.co2TailpipeGpm[0],
+                    vehicle_a_fuel_type: action.payload.vehicle.fuelType[0],
                     requesting_vehicle: false
                     }
 

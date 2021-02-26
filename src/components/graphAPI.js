@@ -47,7 +47,7 @@ function Graph(props){
 
       let seriesB = [{
         name: 'gas car selected: g co2 / mi @ 25 mpg',
-        data: [1, 1]
+        data: [0, 0]
       }, {
         name: 'gas car selected: FREEZE g co2 / mi @ 25 mpg',
         data: [0, 0]
@@ -92,8 +92,8 @@ function Graph(props){
         series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
 
-        seriesB[0].data = props.forecasts.map(()=>(Math.round(8887/props.gasreg)))
-        seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze)))
+        seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a_emissions)))
+        // seriesB[1].data = props.forecasts.map(()=>(Math.round(8887/props.gasfreeze)))
         //8887gr/gal diesel office transportation and air quality EPA-420-F-14-040
         //10180gr/gal diesel office transportation and air quality EPA-420-F-14-040
         seriesB[2].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.mpkwh)))
