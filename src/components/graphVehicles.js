@@ -2,15 +2,15 @@ import ReactApexChart from 'react-apexcharts';
 
 function VehicleGraph(props){
 
-      let seriesB = [{
-        name: `${props.vehicle_a_fuel_type} gas car selected: g co2/mi`,
+      let series = [{
+        name: `${props.vehicle_a.year} ${props.vehicle_a.mfg} ${props.vehicle_a.model}`,
         data: [0, 0]
       }, {
-        name: 'Auto B, not yet implemented',
+        name: `${props.vehicle_b.year} ${props.vehicle_b.mfg} ${props.vehicle_b.model}`,
         data: [0, 0]
       }];
 
-    let optionsB = {
+    let options = {
         chart: {
           height: 350,
           type: 'area'
@@ -39,19 +39,27 @@ function VehicleGraph(props){
 
       if (props.forecasts === undefined) {
       } else {
-        // debugger
         if (props.vehicle_a.vehicle_a_fuel_type !== "Electricity"){
-            seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_a_emissions)))
+            series[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_a_emissions)))
         } else if (props.vehicle_a.vehicle_a_fuel_type === "Electricity") {
-            seriesB[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_a_emissions)))
-        }
-        optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
-        console.log(seriesB)
+            series[0].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_a_emissions)))
+        } 
+        options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
       }
+
+      if (props.forecasts === undefined) {
+      } else {
+        if (props.vehicle_b.vehicle_b_fuel_type !== "Electricity"){
+            series[1].data = props.forecasts.map(()=>(Math.round(props.vehicle_b.vehicle_b_emissions)))
+        } else if (props.vehicle_b.vehicle_b_fuel_type === "Electricity") {
+        series[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_b.vehicle_b_emissions)))
+      }
+      options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
+    }
 
     return(
         <div>
-            <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} />
+            <ReactApexChart options={options} series={series} type="area" height={350} />
         </div>
     )
 }

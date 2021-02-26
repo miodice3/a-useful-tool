@@ -12,16 +12,14 @@ class VehicleContainer extends PureComponent {
     }
 
     render(){
-        // debugger
         return(
             <div>
-                <VehicleSelectionContainer />
+                <VehicleSelectionContainer selector="A" />
+                <VehicleSelectionContainer selector="B" />
                 <ApexChart
                     forecasts={this.props.forecasts}
                     vehicle_a={this.props.vehicle_a}
-                    // vehicle_a_emissions={this.props.vehicle_a_emissions}
-                    // vehicle_a_fuel_type={this.props.vehicle_a_fuel_type}
-                    // state={this.props.state}
+                    vehicle_b={this.props.vehicle_b}
                 />
             </div>
         )
@@ -30,9 +28,8 @@ class VehicleContainer extends PureComponent {
 
 const mapStateToProps = (state) => ({
     forecasts: state.forecasts,
-    // vehicle_a_emissions: state.vehicle_a_emissions,
-    // vehicle_a_fuel_type: state.vehicle_a_fuel_type,
-    vehicle_a: state.vehicle_a
+    vehicle_a: state.vehicle_a,
+    vehicle_b: state.vehicle_b
 })
 
 function mapDispatchToProps(dispatch){

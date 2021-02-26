@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import YearInput from '../components/yearInput'
 import getYearAPI from '../actions/getYearAPI'
 
@@ -11,11 +11,14 @@ import getModelAPI from '../actions/getModelAPI'
 import getVehicleAPI from '../actions/getVehicleAPI'
 
 import Vehicle from '../components/vehicle'
-import getVehcileDetailsAPI from '../actions/getVehcileDetailsAPI'
+
+import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
+import getVehicleDetailsAPIB from '../actions/getVehicleDetailsAPIB'
+
 
 import { connect } from 'react-redux';
 
-class VehicleSelectionContainer extends Component {
+class VehicleSelectionContainer extends PureComponent {
 
     state = {}
 
@@ -74,10 +77,17 @@ class VehicleSelectionContainer extends Component {
         this.setState({
             vehicle_selected_id: this.props.vehicle
         })
-        this.props.getVehcileDetailsAPI(this.props.vehicle)
+        if (this.props.selector === "A") {
+            console.log("selector A")
+            this.props.getVehicleDetailsAPI(this.props.vehicle)
+        } else if (this.props.selector === "B"){
+            console.log("selector B")
+            this.props.getVehicleDetailsAPIB(this.props.vehicle)
+        }
     }
 
     render(){
+        // debugger
         return(
             <div>
                 {this.renderYear()}
@@ -110,7 +120,8 @@ function mapDispatchToProps(dispatch){
         getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
         getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
         getVehicleAPI: (year, manufacture, model) => dispatch(getVehicleAPI(year, manufacture, model)),
-        getVehcileDetailsAPI: (selected) => dispatch(getVehcileDetailsAPI(selected))    
+        getVehicleDetailsAPI: (selected) => dispatch(getVehicleDetailsAPI(selected)),
+        getVehicleDetailsAPIB: (selected) => dispatch(getVehicleDetailsAPIB(selected))    
     }  
 }
 

@@ -1,5 +1,4 @@
-export default function getVehcileDetailsAPI(id){
-    // debugger
+export default function getVehicleDetailsAPI(id){
     return (dispatch) => {
       let parseString = require('xml2js').parseString;
       dispatch({ type: 'START_GET_DETAIL_REQUEST' });
