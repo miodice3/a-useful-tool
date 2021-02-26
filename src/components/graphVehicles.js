@@ -39,11 +39,11 @@ function VehicleGraph(props){
 
       if (props.forecasts === undefined) {
       } else {
-
-        if (props.vehicle_a_fuel_type !== "Electricity"){
-            seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a_emissions)))
-        } else if (props.vehicle_a_fuel_type === "Electricity") {
-            seriesB[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a_emissions)))
+        // debugger
+        if (props.vehicle_a.vehicle_a_fuel_type !== "Electricity"){
+            seriesB[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_a_emissions)))
+        } else if (props.vehicle_a.vehicle_a_fuel_type === "Electricity") {
+            seriesB[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_a_emissions)))
         }
         optionsB.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
         console.log(seriesB)
