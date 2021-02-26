@@ -69,6 +69,21 @@ export default function reducer(state={}, action){
                 requesting_vehicle: false
                 }
 
+            case 'START_GET_DETAIL_REQUEST':
+                debugger
+                return {
+                    ...state,
+                    requesting_vehicle: true
+                } 
+    
+            case 'ADD_DETAIL':
+                debugger
+                return {
+                    ...state,
+                    vehicle: action.payload.menuItems.menuItem[0].value[0],
+                    requesting_vehicle: false
+                    }
+
         default:
             return state;
     }

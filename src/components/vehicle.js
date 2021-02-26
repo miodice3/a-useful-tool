@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class Vehicle extends Component {
 
+    componentDidMount = () => {
+        this.props.getVehcileDetailsAPI()
+    }
+
     render(){
         return(
             <div>
