@@ -51,12 +51,9 @@ function VehicleGraph(props){
 
     return(
         <div>
-            {/* <ReactApexChart options={options} series={series} type="area" height={350} /> */}
             <ReactApexChart options={optionsB} series={seriesB} type="area" height={350} />
         </div>
     )
 }
-
-
 
 export default VehicleGraph;
