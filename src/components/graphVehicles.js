@@ -39,20 +39,20 @@ function VehicleGraph(props){
 
       if (props.forecasts === undefined) {
       } else {
-        if (props.vehicle_a.vehicle_a_fuel_type !== "Electricity"){
-            series[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_a_emissions)))
-        } else if (props.vehicle_a.vehicle_a_fuel_type === "Electricity") {
-            series[0].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_a_emissions)))
+        if (props.vehicle_a.vehicle_fuel_type !== "Electricity"){
+            series[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_emissions)))
+        } else if (props.vehicle_a.vehicle_fuel_type === "Electricity") {
+            series[0].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_emissions)))
         } 
         options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
       }
 
       if (props.forecasts === undefined) {
       } else {
-        if (props.vehicle_b.vehicle_b_fuel_type !== "Electricity"){
-            series[1].data = props.forecasts.map(()=>(Math.round(props.vehicle_b.vehicle_b_emissions)))
-        } else if (props.vehicle_b.vehicle_b_fuel_type === "Electricity") {
-        series[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_b.vehicle_b_emissions)))
+        if (props.vehicle_b.vehicle_fuel_type !== "Electricity"){
+            series[1].data = props.forecasts.map(()=>(Math.round(props.vehicle_b.vehicle_emissions)))
+        } else if (props.vehicle_b.vehicle_fuel_type === "Electricity") {
+        series[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_b.vehicle_emissions)))
       }
       options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
     }

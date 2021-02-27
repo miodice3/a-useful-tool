@@ -1,4 +1,5 @@
-export default function getModelAPI(year, manufacturer, model){
+export default function getModelAPI(year, manufacturer, model, selector){
+    // debugger
     return (dispatch) => {
       let parseString = require('xml2js').parseString;
       dispatch({ type: 'START_GET_VEHICLE_REQUEST' });
@@ -7,7 +8,7 @@ export default function getModelAPI(year, manufacturer, model){
       fetch(url)
       .then(response=>response.text())
       .then(xmlstringified => parseString(xmlstringified, function(err, result){
-              return (dispatch({type: 'ADD_VEHICLE', payload: result}))
+              return (dispatch({type: 'ADD_VEHICLE', selector: selector, payload: result}))
           })
           )
       }

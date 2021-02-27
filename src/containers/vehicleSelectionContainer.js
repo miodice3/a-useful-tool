@@ -13,7 +13,7 @@ import getVehicleAPI from '../actions/getVehicleAPI'
 import Vehicle from '../components/vehicle'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
-import getVehicleDetailsAPIB from '../actions/getVehicleDetailsAPIB'
+// import getVehicleDetailsAPIB from '../actions/getVehicleDetailsAPIB'
 
 
 import { connect } from 'react-redux';
@@ -64,7 +64,7 @@ class VehicleSelectionContainer extends PureComponent {
         this.setState({
             selected_vehicle: event
         })
-        this.props.getVehicleAPI(this.state.selected_year, this.state.selected_mfg, event)
+        this.props.getVehicleAPI(this.state.selected_year, this.state.selected_mfg, event, this.props.selector)
     }
 
     renderVehicle = () =>{
@@ -77,17 +77,10 @@ class VehicleSelectionContainer extends PureComponent {
         this.setState({
             vehicle_selected_id: this.props.vehicle
         })
-        if (this.props.selector === "A") {
-            console.log("selector A")
-            this.props.getVehicleDetailsAPI(this.props.vehicle)
-        } else if (this.props.selector === "B"){
-            console.log("selector B")
-            this.props.getVehicleDetailsAPIB(this.props.vehicle)
-        }
+        this.props.getVehicleDetailsAPI(this.props.vehicle, this.props.selector)
     }
 
     render(){
-        // debugger
         return(
             <div>
                 {this.renderYear()}
@@ -99,8 +92,9 @@ class VehicleSelectionContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({ //existingProps
     years: state.years,
+    // selectedYear: state[existingProps.selector].selectedYear
     requesting_year: state.requesting_year,
 
     manufacturers: state.manufacturers,
@@ -119,9 +113,8 @@ function mapDispatchToProps(dispatch){
         getYearAPI: () => dispatch(getYearAPI()),
         getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
         getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
-        getVehicleAPI: (year, manufacture, model) => dispatch(getVehicleAPI(year, manufacture, model)),
-        getVehicleDetailsAPI: (selected) => dispatch(getVehicleDetailsAPI(selected)),
-        getVehicleDetailsAPIB: (selected) => dispatch(getVehicleDetailsAPIB(selected))    
+        getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
+        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
     }  
 }
 
