@@ -13,7 +13,7 @@ import getVehicleAPI from '../actions/getVehicleAPI'
 import Vehicle from '../components/vehicle'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
-// import getVehicleDetailsAPIB from '../actions/getVehicleDetailsAPIB'
+import setSelectedYear from '../actions/setSelectedYear'
 
 
 import { connect } from 'react-redux';
@@ -23,15 +23,20 @@ class VehicleSelectionContainer extends PureComponent {
     state = {}
 
     componentDidMount(){
-        this.props.getYearAPI()
+        this.props.getYearAPI(this.props.selector)
     }
 
     renderYear = () => {
-        if (this.props.requesting_year === false){
-        return <YearInput getManufacturerAPI={this.getManufacturerAPI} years={this.props.years}/>
-            } else {
-                return "loading years"
-            }
+        if (!this.props.requesting_year){
+            return <YearInput
+                setSelectedYear={this.props.setSelectedYear}
+                getManufacturerAPI={this.getManufacturerAPI}
+                years={this.props.years}
+                selector={this.props.selector}
+                selectedYear={this.props.selectedYear}/>
+        } else {
+            return "loading years"
+        }
     }
 
     getManufacturerAPI = (event)=> {
@@ -92,11 +97,12 @@ class VehicleSelectionContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({ //existingProps
-    years: state.years,
-    // selectedYear: state[existingProps.selector].selectedYear
-    requesting_year: state.requesting_year,
+const mapStateToProps = (state, existingProps) => ({
+    ...existingProps,
+    requesting_year: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading : true,
+    years: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].years : [],
 
+    selectedYear: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedYear : null,
     manufacturers: state.manufacturers,
     requesting_manufacturer: state.requesting_manufacturer,
 
@@ -110,7 +116,8 @@ const mapStateToProps = (state) => ({ //existingProps
 
 function mapDispatchToProps(dispatch){
     return {
-        getYearAPI: () => dispatch(getYearAPI()),
+        getYearAPI: (selector) => dispatch(getYearAPI(selector)),
+        setSelectedYear: (selectedYear, selector) => dispatch(setSelectedYear(selectedYear, selector)),
         getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
         getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),

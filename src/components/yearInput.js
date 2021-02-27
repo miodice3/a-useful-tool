@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class YearInput extends Component {
+class YearInput extends PureComponent {
 
     renderForm = () =>{
-        return this.props.years.map((year, index)=><option key={index} value={year.value[0]}>{year.text[0]}</option>)
+        return this.props.years.map( (year, index) => {
+            return <option key={index} value={year.value[0]}>{year.text[0]}</option>
+        })
     }
 
-    handleChange = (event) =>{
-        event.preventDefault()
-        this.props.getManufacturerAPI(event.target.value)
+    componentDidUpdate(){
+        this.props.getManufacturerAPI(this.props.selectedYear)
+    }
+
+    handleChange = (event) => {
+        this.props.setSelectedYear(event.target.value, this.props.selector)
     }
 
     render(){
         return(
             <div onChange={this.handleChange}>
                 <select>
-                <option value="null">Select Year</option>
                 {this.renderForm()}
                 </select>
             </div>
@@ -24,3 +28,13 @@ class YearInput extends Component {
 }
 
 export default YearInput
+
+
+    // renderForm = () =>{
+    //     return this.props.years.map( (year, index) => {
+    //         if (index === this.props.selectedYear) {
+    //             return <option key={index} value={year.value[0]} selected>{year.text[0]}</option>
+    //         }
+    //         return <option key={index} value={year.value[0]} selected>{year.text[0]}</option>
+    //     })
+    // }

@@ -1,5 +1,6 @@
 
-export default function reducer(state={ vehicle_a: {}, vehicle_b: {}}, action){
+export default function reducer(state={ vehicles: {} }, action){ // todo: this should run without vehicle_a: {}, vehicle_b: {}
+// export default function reducer(state={ vehicles: {}, vehicle_a: {}, vehicle_b: {} }, action){ // todo: this should run without vehicle_a: {}, vehicle_b: {}
     switch (action.type){
         case 'START_ADD_FORECAST_REQUEST':
             return {
@@ -14,25 +15,63 @@ export default function reducer(state={ vehicle_a: {}, vehicle_b: {}}, action){
                 }
 
         case 'START_GET_YEAR_REQUEST':
-            return {
-                ...state,
-                requesting_year: true
-            } 
+
+            var newState = {
+                ...state
+            }
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading: true,
+                years: [],
+                selectedYear: null // TODO: add case for `YEAR_SELECTED`, update this field
+            }
+            return newState
 
         case 'ADD_YEAR':
-            return {
-                ...state,
-                years: action.payload.menuItems.menuItem.map(year => year),
-                requesting_year: false
-                }
+            var newState = {
+                ...state
+            }
+            vehicle = state.vehicles[action.selector]
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading: false,
+                years: action.payload.menuItems.menuItem.map(year => year)
+            }
+            return newState
+
+        case 'YEAR_SELECTED':
+            // debugger //grab selected year value & amend ln 55
+            var newState = {
+                ...state
+            }
+            vehicle = state.vehicles[action.selector]
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                selectedYear: action.payload
+            }
+            return newState;
+
+            // return {
+            //     ...state,
+            //     years: action.payload.menuItems.menuItem.map(year => year),
+            //     requesting_year: false
+            //     }
 
         case 'START_GET_MANUFACTURER_REQUEST':
+            // debugger
             return {
                 ...state,
                 requesting_manufacturer: true
             } 
 
         case 'ADD_MANUFACTURER':
+            // debugger
             return {
                 ...state,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),

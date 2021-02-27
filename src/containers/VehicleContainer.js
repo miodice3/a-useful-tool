@@ -16,11 +16,11 @@ class VehicleContainer extends PureComponent {
             <div>
                 <VehicleSelectionContainer selector="A" />
                 <VehicleSelectionContainer selector="B" />
-                <ApexChart
+                {/* <ApexChart
                     forecasts={this.props.forecasts}
                     vehicle_a={this.props.vehicle_a}
                     vehicle_b={this.props.vehicle_b}
-                />
+                /> */}
             </div>
         )
     }
