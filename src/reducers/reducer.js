@@ -1,6 +1,5 @@
 
 export default function reducer(state={ vehicles: {} }, action){ // todo: this should run without vehicle_a: {}, vehicle_b: {}
-// export default function reducer(state={ vehicles: {}, vehicle_a: {}, vehicle_b: {} }, action){ // todo: this should run without vehicle_a: {}, vehicle_b: {}
     switch (action.type){
         case 'START_ADD_FORECAST_REQUEST':
             return {
@@ -13,7 +12,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 forecasts: action.payload.map(schedule => schedule),
                 requesting: false
                 }
-
+// *****************************************************************
         case 'START_GET_YEAR_REQUEST':
 
             var newState = {
@@ -29,7 +28,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 ...vehicle,
                 loading: true,
                 years: [],
-                selectedYear: null // TODO: add case for `YEAR_SELECTED`, update this field
+                selectedYear: null
             }
             return newState
 
@@ -46,7 +45,6 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             return newState
 
         case 'YEAR_SELECTED':
-            // debugger //grab selected year value & amend ln 55
             var newState = {
                 ...state
             }
@@ -57,26 +55,43 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             }
             return newState;
 
-            // return {
-            //     ...state,
-            //     years: action.payload.menuItems.menuItem.map(year => year),
-            //     requesting_year: false
-            //     }
+// *****************************************************************
 
         case 'START_GET_MANUFACTURER_REQUEST':
-            // debugger
-            return {
-                ...state,
-                requesting_manufacturer: true
-            } 
+            debugger
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading_manufacturers: true,
+                manufacturers: [],
+                selectedManufacturer: null
+            }
+            return newState
+
+            // return {
+            //     ...state,
+            //     requesting_manufacturer: true
+            // } 
 
         case 'ADD_MANUFACTURER':
-            // debugger
+            debugger
             return {
                 ...state,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),
                 requesting_manufacturer: false
                 }
+
+        case 'MANUFACTURER_SELECTED':
+            debugger
+            return state
+
+// *****************************************************************
 
         case 'START_GET_MODEL_REQUEST':
             return {

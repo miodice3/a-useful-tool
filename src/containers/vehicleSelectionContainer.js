@@ -14,6 +14,7 @@ import Vehicle from '../components/vehicle'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
+import setSelectedManufacturer from '../actions/setSelectedManufacturer'
 
 
 import { connect } from 'react-redux';
@@ -40,15 +41,18 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     getManufacturerAPI = (event)=> {
-        this.setState({
-            selected_year: event
-        })
-        this.props.getManufacturerAPI(event)
+        // this.setState({
+        //     selected_year: event
+        // })
+        this.props.getManufacturerAPI(event, this.props.selector)
     }
 
     renderManufacturers = () =>{
         if (this.props.requesting_manufacturer === false){
-            return <ManufacturerInput getModelAPI={this.getModelAPI} manufacturers={this.props.manufacturers}/>
+            return <ManufacturerInput 
+                getModelAPI={this.getModelAPI} 
+                manufacturers={this.props.manufacturers}
+                selectedManufacturer={this.props.selectedManufacturer}/>
             }
         }
     
@@ -118,7 +122,8 @@ function mapDispatchToProps(dispatch){
     return {
         getYearAPI: (selector) => dispatch(getYearAPI(selector)),
         setSelectedYear: (selectedYear, selector) => dispatch(setSelectedYear(selectedYear, selector)),
-        getManufacturerAPI: (selected) => dispatch(getManufacturerAPI(selected)),
+        setSelectedManufacturer: (selectedManufacturer, selector) => dispatch(setSelectedManufacturer(selectedManufacturer, selector)),
+        getManufacturerAPI: (selected, selector) => dispatch(getManufacturerAPI(selected, selector)),
         getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
