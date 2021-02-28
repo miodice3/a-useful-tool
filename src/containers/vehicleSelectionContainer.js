@@ -28,6 +28,7 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     renderYear = () => {
+        // debugger
         if (!this.props.requesting_year){
             return <YearInput
                 setSelectedYear={this.props.setSelectedYear}
@@ -48,11 +49,14 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     renderManufacturers = () =>{
-        if (this.props.requesting_manufacturer === false){
+        // debugger
+        // if (this.props.requesting_manufacturer === false){
+        if (!this.props.requesting_manufacturer){
             return <ManufacturerInput 
                 getModelAPI={this.getModelAPI} 
                 manufacturers={this.props.manufacturers}
-                selectedManufacturer={this.props.selectedManufacturer}/>
+                selectedManufacturer={this.props.selectedManufacturer}
+                setSelectedManufacturer={this.props.setSelectedManufacturer}/>
             }
         }
     
@@ -107,8 +111,10 @@ const mapStateToProps = (state, existingProps) => ({
     years: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].years : [],
 
     selectedYear: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedYear : null,
-    manufacturers: state.manufacturers,
-    requesting_manufacturer: state.requesting_manufacturer,
+    manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].manufacturers : [],
+    // requesting_manufacturer: state.requesting_manufacturer,
+    loading_manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading_manufacturers : false,
+//^^ this line causing error
 
     models: state.models,
     requesting_model: state.requesting_model,

@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class ManufacturerInput extends Component {
+class ManufacturerInput extends PureComponent {
 
     renderForm = () =>{
         return this.props.manufacturers.map((manufacturer, index)=><option key={index} value={manufacturer[0]}>{manufacturer[0]}</option>)
     }
 
+    componentDidUpdate(){
+        if (this.props.selectedManufacturer){
+            this.props.getModelAPI(this.props.selectedManufacturer)
+        }
+    }
+
     handleChange = (event) =>{
-        event.preventDefault()
-        console.log("this manufacturer was selected: ", event.target.value)
-        this.props.getModelAPI(event.target.value)
+        this.props.setSelectedManufacturer(event.target.value, this.props.selector)
     }
 
     render(){
         return(
             <div onChange={this.handleChange}>
                 <select>
-                <option value="null">Select Manufacturer</option>
                 {this.renderForm()}
                 </select>
             </div>

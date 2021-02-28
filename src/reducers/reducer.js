@@ -28,6 +28,8 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 ...vehicle,
                 loading: true,
                 years: [],
+                manufacturers: [],
+                loading_manufacturers: false,
                 selectedYear: null
             }
             return newState
@@ -58,7 +60,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
 // *****************************************************************
 
         case 'START_GET_MANUFACTURER_REQUEST':
-            debugger
+            // debugger
             var newState = {...state}
 
             var vehicle = {}
@@ -74,18 +76,22 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             }
             return newState
 
-            // return {
-            //     ...state,
-            //     requesting_manufacturer: true
-            // } 
-
         case 'ADD_MANUFACTURER':
-            debugger
-            return {
-                ...state,
+
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading_manufacturers: false,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),
-                requesting_manufacturer: false
-                }
+                selectedManufacturer: null
+            }
+            return newState
 
         case 'MANUFACTURER_SELECTED':
             debugger
@@ -130,7 +136,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 } 
     
             case 'ADD_DETAIL':
-                debugger
+                // debugger
                 let watthourspermile
                 let mpkwh
 
