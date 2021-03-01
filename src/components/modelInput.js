@@ -6,10 +6,13 @@ class ModelInput extends Component {
         return this.props.models.map((model, index)=><option key={index} value={model}>{model}</option>)
     }
 
-    handleChange = (event) =>{
-        event.preventDefault()
+    componentDidUpdate(){
         // debugger
-        this.props.getVehicleAPI(event.target.value)
+    }
+
+
+    handleChange = (event) =>{
+        this.props.setSelectedModel(event.target.value, this.props.selector)
     }
 
     render(){

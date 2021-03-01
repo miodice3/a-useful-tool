@@ -15,7 +15,7 @@ import Vehicle from '../components/vehicle'
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
 import setSelectedManufacturer from '../actions/setSelectedManufacturer'
-
+import setSelectedModel from '../actions/setSelectedModel'
 
 import { connect } from 'react-redux';
 
@@ -46,7 +46,7 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     renderManufacturers = () =>{
-        if (!this.props.requesting_manufacturer){
+        if (this.props.should_display_manufacturers){
             return <ManufacturerInput 
                 getModelAPI={this.getModelAPI} 
                 manufacturers={this.props.manufacturers}
@@ -55,6 +55,8 @@ class VehicleSelectionContainer extends PureComponent {
                 setSelectedManufacturer={this.props.setSelectedManufacturer}
                 selectedYear={this.props.selectedYear}
                 />
+            } else {
+                return
             }
         }
     
@@ -63,8 +65,14 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     renderModels = () =>{
-        if (this.props.requesting_model === false){
-            return <ModelInput getVehicleAPI={this.getVehicleAPI} models={this.props.models}/>
+        if (this.props.should_display_models){
+            return <ModelInput 
+                getVehicleAPI={this.getVehicleAPI} 
+                models={this.props.models}
+                selectedModel={this.props.selectedModel}
+                setSelectedModel={this.props.setSelectedModel}
+                selector={this.props.selector}
+                />
             }
         }
 
@@ -102,19 +110,20 @@ class VehicleSelectionContainer extends PureComponent {
 
 const mapStateToProps = (state, existingProps) => ({
     ...existingProps,
-    requesting_year: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading : true,
     years: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].years : [],
-
+    requesting_year: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading : true,
     selectedYear: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedYear : null,
+
     manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].manufacturers : [],
-    // requesting_manufacturer: state.requesting_manufacturer,
     loading_manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading_manufacturers : false,
-//^^ this line causing error
-    // selectedYear: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedYear : null,
+    should_display_manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].should_display_manufacturers : false,
     selectedManufacturer: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedManufacturer : null,
 
-    models: state.models,
+    // models: state.models,
+    models: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].models : [],
     requesting_model: state.requesting_model,
+    should_display_models: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].should_display_models : false,
+    selectedModel: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedModel : null,
 
     vehicle_a_detail_requested: state.vehicle_a_detail_requested,
     vehicle: state.vehicle,
@@ -125,9 +134,13 @@ function mapDispatchToProps(dispatch){
     return {
         getYearAPI: (selector) => dispatch(getYearAPI(selector)),
         setSelectedYear: (selectedYear, selector) => dispatch(setSelectedYear(selectedYear, selector)),
-        setSelectedManufacturer: (selectedManufacturer, selector) => dispatch(setSelectedManufacturer(selectedManufacturer, selector)),
+        
         getManufacturerAPI: (selected, selector) => dispatch(getManufacturerAPI(selected, selector)),
+        setSelectedManufacturer: (selectedManufacturer, selector) => dispatch(setSelectedManufacturer(selectedManufacturer, selector)),
+        
         getModelAPI: (year, manufacture, selector) => dispatch(getModelAPI(year, manufacture, selector)),
+        setSelectedModel: (selectedModel, selector) => dispatch(setSelectedModel(selectedModel, selector)),
+
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
     }  

@@ -88,6 +88,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             newState.vehicles[action.selector] = {
                 ...vehicle,
                 loading_manufacturers: false,
+                should_display_manufacturers: true,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text)
             }
             return newState
@@ -107,17 +108,50 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
 // *****************************************************************
 
         case 'START_GET_MODEL_REQUEST':
-            return {
-                ...state,
-                requesting_model: true
-            } 
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_model: true,
+                models: [],
+                selectedModel: ""
+            }
+            return newState
 
         case 'ADD_MODEL':
-            return {
-                ...state,
-                models: action.payload.menuItems.menuItem.map(model => model.text[0]),
-                requesting_model: false
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_model: false,
+                should_display_models: true,
+                models: action.payload.menuItems.menuItem.map(model => model.text[0])
+            }
+            return newState
+
+            case 'MODEL_SELECTED':
+                var newState = {
+                    ...state
                 }
+                vehicle = state.vehicles[action.selector]
+                newState.vehicles[action.selector] = {
+                    ...vehicle,
+                    selectedModel: action.payload
+                    // selectedManufacturer: "BMW" << needs to be a list item of models to test successfully
+                }
+                return newState;
+
+// *****************************************************************
 
         case 'START_GET_VEHICLE_REQUEST':
             return {
