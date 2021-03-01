@@ -191,7 +191,6 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             }
             return newState
 
-
             // return {
             //     ...state,
             //     vehicle: action.payload.menuItems.menuItem[0].value[0],
@@ -211,7 +210,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                     ...vehicle,
                     requesting_detail: true
                 }
-                
+
                 return newState
 
             // return {
@@ -220,74 +219,111 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 // } 
     
             case 'ADD_DETAIL':
+                var newState = {...state}
+
+                var vehicle = {}
+                if (state.vehicles[action.selector]) {
+                    vehicle = state.vehicles[action.selector]
+                }
+    
                 let watthourspermile
                 let mpkwh
 
-                if (action.selector === "A"){
-                    console.log("WITHIN UPDATE DETAIL FOR A")
-                    if (action.payload.vehicle.fuelType[0] === "Electricity"){
-                        watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
-                        mpkwh = 1000 / watthourspermile
-                        return {
-                            ...state,
-                            vehicle_a: {
-                                    vehicle_detail_requested: true,
-                                    mfg: action.payload.vehicle.make[0],
-                                    model: action.payload.vehicle.model[0],
-                                    year: action.payload.vehicle.year[0],
-                                    vehicle_emissions: mpkwh,
-                                    vehicle_fuel_type: action.payload.vehicle.fuelType[0],
-                                    requesting_detail: false
-                                }
-                            }
-                    } else {
-                        return {
-                            ...state,
-                            vehicle_a: {
+                if (action.payload.vehicle.fuelType[0] === "Electricity"){
+                    watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
+                    mpkwh = 1000 / watthourspermile
+                        newState.vehicles[action.selector] = {
+                            ...vehicle,
                                 vehicle_detail_requested: true,
-                                mfg: action.payload.vehicle.make[0],
-                                model: action.payload.vehicle.model[0],
-                                year: action.payload.vehicle.year[0],
-                                vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
+                                // mfg: action.payload.vehicle.make[0],
+                                // model: action.payload.vehicle.model[0],
+                                // year: action.payload.vehicle.year[0],
+                                vehicle_emissions: mpkwh,
                                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
                                 requesting_detail: false
-                            }
                         }
-                    }
-                } else if (action.selector === "B"){
-                    console.log("WITHIN UPDATE DETAIL FOR B")
-                    if (action.payload.vehicle.fuelType[0] === "Electricity"){
-                        watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
-                        mpkwh = 1000 / watthourspermile
-                        return {
-                            ...state,
-                            vehicle_b: {
+                     } else {
+                            newState.vehicles[action.selector] = {
+                                ...vehicle,
                                     vehicle_detail_requested: true,
-                                    mfg: action.payload.vehicle.make[0],
-                                    model: action.payload.vehicle.model[0],
-                                    year: action.payload.vehicle.year[0],
-                                    vehicle_emissions: mpkwh,
+                                    // mfg: action.payload.vehicle.make[0],
+                                    // model: action.payload.vehicle.model[0],
+                                    // year: action.payload.vehicle.year[0],
+                                    vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
                                     vehicle_fuel_type: action.payload.vehicle.fuelType[0],
                                     requesting_detail: false
-                                }
                             }
-                    } else {
-                        return {
-                            ...state,
-                            vehicle_b: {
-                                vehicle_detail_requested: true,
-                                mfg: action.payload.vehicle.make[0],
-                                model: action.payload.vehicle.model[0],
-                                year: action.payload.vehicle.year[0],
-                                vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
-                                vehicle_fuel_type: action.payload.vehicle.fuelType[0],
-                                requesting_detail: false
-                            }
+
                         }
-                    }
-                } else {
-                    return state;
-                }
+
+                return newState
+                // }
+
+                // if (action.selector === "A"){
+                //     console.log("WITHIN UPDATE DETAIL FOR A")
+                //     if (action.payload.vehicle.fuelType[0] === "Electricity"){
+                //         watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
+                //         mpkwh = 1000 / watthourspermile
+                //         return {
+                //             ...state,
+                //             vehicle_a: {
+                //                     vehicle_detail_requested: true,
+                //                     mfg: action.payload.vehicle.make[0],
+                //                     model: action.payload.vehicle.model[0],
+                //                     year: action.payload.vehicle.year[0],
+                //                     vehicle_emissions: mpkwh,
+                //                     vehicle_fuel_type: action.payload.vehicle.fuelType[0],
+                //                     requesting_detail: false
+                //                 }
+                //             }
+                //     } else {
+                //         return {
+                //             ...state,
+                //             vehicle_a: {
+                //                 vehicle_detail_requested: true,
+                //                 mfg: action.payload.vehicle.make[0],
+                //                 model: action.payload.vehicle.model[0],
+                //                 year: action.payload.vehicle.year[0],
+                //                 vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
+                //                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
+                //                 requesting_detail: false
+                //             }
+                //         }
+                //     }
+                // } else if (action.selector === "B"){
+                //     console.log("WITHIN UPDATE DETAIL FOR B")
+                //     if (action.payload.vehicle.fuelType[0] === "Electricity"){
+                //         watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
+                //         mpkwh = 1000 / watthourspermile
+                //         return {
+                //             ...state,
+                //             vehicle_b: {
+                //                     vehicle_detail_requested: true,
+                //                     mfg: action.payload.vehicle.make[0],
+                //                     model: action.payload.vehicle.model[0],
+                //                     year: action.payload.vehicle.year[0],
+                //                     vehicle_emissions: mpkwh,
+                //                     vehicle_fuel_type: action.payload.vehicle.fuelType[0],
+                //                     requesting_detail: false
+                //                 }
+                //             }
+                //     } else {
+                //         return {
+                //             ...state,
+                //             vehicle_b: {
+                //                 vehicle_detail_requested: true,
+                //                 mfg: action.payload.vehicle.make[0],
+                //                 model: action.payload.vehicle.model[0],
+                //                 year: action.payload.vehicle.year[0],
+                //                 vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
+                //                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
+                //                 requesting_detail: false
+                //             }
+                //         }
+                //     }
+                // } else {
+                //     return state;
+                // }
 
         default:
             return state;
