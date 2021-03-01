@@ -3,10 +3,10 @@ import ReactApexChart from 'react-apexcharts';
 function VehicleGraph(props){
 
       let series = [{
-        name: `${props.vehicle_a.year} ${props.vehicle_a.mfg} ${props.vehicle_a.model}`,
+        name: `${props.vehicle_a.selectedYear} ${props.vehicle_a.selectedManufacturer} ${props.vehicle_a.selectedModel} - ${props.vehicle_a.vehicle_fuel_type}`,
         data: [0, 0]
       }, {
-        name: `${props.vehicle_b.year} ${props.vehicle_b.mfg} ${props.vehicle_b.model}`,
+        name: `${props.vehicle_b.selectedYear} ${props.vehicle_b.selectedManufacturer} ${props.vehicle_b.selectedModel} - ${props.vehicle_b.vehicle_fuel_type}`,
         data: [0, 0]
       }];
 
