@@ -53,7 +53,8 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             vehicle = state.vehicles[action.selector]
             newState.vehicles[action.selector] = {
                 ...vehicle,
-                selectedYear: action.payload
+                // selectedYear: action.payload
+                selectedYear: 1995
             }
             return newState;
 
@@ -72,7 +73,7 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 ...vehicle,
                 loading_manufacturers: true,
                 manufacturers: [],
-                selectedManufacturer: null
+                selectedManufacturer: ""
             }
             return newState
 
@@ -88,14 +89,22 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             newState.vehicles[action.selector] = {
                 ...vehicle,
                 loading_manufacturers: false,
-                manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text),
-                selectedManufacturer: null
+                manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text)
+                // selectedManufacturer: null
             }
             return newState
 
         case 'MANUFACTURER_SELECTED':
-            debugger
-            return state
+            var newState = {
+                ...state
+            }
+            vehicle = state.vehicles[action.selector]
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                selectedManufacturer: action.payload
+                // selectedManufacturer: "BMW"
+            }
+            return newState;
 
 // *****************************************************************
 

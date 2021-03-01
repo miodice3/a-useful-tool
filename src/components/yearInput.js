@@ -4,11 +4,6 @@ class YearInput extends PureComponent {
 
     renderForm = () => {
         return this.props.years.map((year, index) => {
-            // if (year.text[0] == this.props.selectedYear) {
-            //     return <option key="default" value={year.value[0]}>{year.text[0]}</option>
-            // } else {
-            //     return <option key={index} value={year.value[0]}>{year.text[0]}</option>
-            // }
             return <option key={index} value={year.value[0]}>{year.text[0]}</option>
         })
     }
@@ -22,7 +17,6 @@ class YearInput extends PureComponent {
     }
 
     render() {
-        // let selectedOptionId = "default"
         return (
             <div onChange={this.handleChange}>
                 <select defaultValue="default" value={this.props.selectedYear}>
@@ -35,13 +29,3 @@ class YearInput extends PureComponent {
 }
 
 export default YearInput
-
-
-    // renderForm = () =>{
-    //     return this.props.years.map( (year, index) => {
-    //         if (year === this.props.selectedYear) {
-    //             return <option key={index} value={year.value[0]} selected>{year.text[0]}</option>
-    //         }
-    //         return <option key={index} value={year.value[0]} selected>{year.text[0]}</option>
-    //     })
-    // }

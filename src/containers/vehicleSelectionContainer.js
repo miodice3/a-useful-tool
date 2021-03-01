@@ -42,21 +42,24 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     getManufacturerAPI = (event)=> {
-        // this.setState({
-        //     selected_year: event
-        // })
         this.props.getManufacturerAPI(event, this.props.selector)
     }
 
     renderManufacturers = () =>{
-        // debugger
-        // if (this.props.requesting_manufacturer === false){
         if (!this.props.requesting_manufacturer){
+            // if (!this.props.requesting_year){
             return <ManufacturerInput 
                 getModelAPI={this.getModelAPI} 
                 manufacturers={this.props.manufacturers}
                 selectedManufacturer={this.props.selectedManufacturer}
+                selector={this.props.selector}
                 setSelectedManufacturer={this.props.setSelectedManufacturer}/>
+
+                // setSelectedYear={this.props.setSelectedYear}
+                // getManufacturerAPI={this.getManufacturerAPI}
+                // years={this.props.years}
+                // selector={this.props.selector}
+                // selectedYear={this.props.selectedYear}/>
             }
         }
     
@@ -115,6 +118,8 @@ const mapStateToProps = (state, existingProps) => ({
     // requesting_manufacturer: state.requesting_manufacturer,
     loading_manufacturers: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading_manufacturers : false,
 //^^ this line causing error
+    // selectedYear: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedYear : null,
+    selectedManufacturer: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedManufacturer : null,
 
     models: state.models,
     requesting_model: state.requesting_model,
@@ -123,7 +128,7 @@ const mapStateToProps = (state, existingProps) => ({
     vehicle: state.vehicle,
     requesting_vehicle: state.requesting_vehicle
 })
-
+// test manual state has to match one of the returned states from year, mfg etc...
 function mapDispatchToProps(dispatch){
     return {
         getYearAPI: (selector) => dispatch(getYearAPI(selector)),
