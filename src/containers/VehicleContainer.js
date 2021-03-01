@@ -11,6 +11,18 @@ class VehicleContainer extends PureComponent {
         this.props.setAddForecastWithinDispatch()
     }
 
+    renderGraph = ()=>{
+        // debugger
+        if (this.props.vehicle_a && this.props.vehicle_b){
+            return <ApexChart
+                    forecasts={this.props.forecasts}
+                    vehicle_a={this.props.vehicle_a}
+                    vehicle_b={this.props.vehicle_b}
+                />
+        }
+
+    }
+
     render(){
         return(
             <div>
@@ -18,9 +30,10 @@ class VehicleContainer extends PureComponent {
                 <VehicleSelectionContainer selector="B" />
                 {/* <ApexChart
                     forecasts={this.props.forecasts}
-                    vehicle_a={this.props.vehicle_a}
-                    vehicle_b={this.props.vehicle_b}
+                    // vehicle_a={this.props.vehicle_a}
+                    // vehicle_b={this.props.vehicle_b}
                 /> */}
+                {this.renderGraph()}
             </div>
         )
     }
@@ -28,8 +41,8 @@ class VehicleContainer extends PureComponent {
 
 const mapStateToProps = (state) => ({
     forecasts: state.forecasts,
-    vehicle_a: state.vehicle_a,
-    vehicle_b: state.vehicle_b
+    vehicle_a: state.vehicles.A ? state.vehicles.A : null,
+    vehicle_b: state.vehicles.B ? state.vehicles.B : null
 })
 
 function mapDispatchToProps(dispatch){
