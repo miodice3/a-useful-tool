@@ -154,27 +154,70 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
 // *****************************************************************
 
         case 'START_GET_VEHICLE_REQUEST':
-            return {
-                ...state,
-                vehicle_a_detail_requested: false,
-                requesting_vehicle: true,
-                requesting_detail: false
-            } 
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_fedID_number: true,
+                fedID_number: null
+            }
+            return newState
+
+            // return {
+            //     ...state,
+            //     vehicle_a_detail_requested: false,
+            //     requesting_vehicle: true,
+            //     requesting_detail: false
+            // } 
 
         case 'ADD_VEHICLE':
 
-            return {
-                ...state,
-                vehicle: action.payload.menuItems.menuItem[0].value[0],
-                requesting_vehicle: false,
-                requesting_detail: false
-                }
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_fedID_number: false,
+                fedID_number: action.payload.menuItems.menuItem[0].value[0]
+            }
+            return newState
+
+
+            // return {
+            //     ...state,
+            //     vehicle: action.payload.menuItems.menuItem[0].value[0],
+            //     requesting_vehicle: false,
+            //     requesting_detail: false
+            //     }
 
             case 'START_GET_DETAIL_REQUEST':
-                return {
-                    ...state,
+                var newState = {...state}
+
+                var vehicle = {}
+                if (state.vehicles[action.selector]) {
+                    vehicle = state.vehicles[action.selector]
+                }
+    
+                newState.vehicles[action.selector] = {
+                    ...vehicle,
                     requesting_detail: true
-                } 
+                }
+                
+                return newState
+
+            // return {
+                //     ...state,
+                //     requesting_detail: true
+                // } 
     
             case 'ADD_DETAIL':
                 let watthourspermile

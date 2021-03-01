@@ -69,31 +69,29 @@ class VehicleSelectionContainer extends PureComponent {
             return <ModelInput 
                 getVehicleAPI={this.getVehicleAPI} 
                 models={this.props.models}
-                selectedModel={this.props.selectedModel}
                 setSelectedModel={this.props.setSelectedModel}
+                
+                selectedYear={this.props.selectedYear}
+                selectedManufacturer={this.props.selectedManufacturer}
+                selectedModel={this.props.selectedModel}
+
                 selector={this.props.selector}
                 />
             }
         }
 
-    getVehicleAPI = (event)=> {
-        this.setState({
-            selected_vehicle: event
-        })
-        this.props.getVehicleAPI(this.state.selected_year, this.state.selected_mfg, event, this.props.selector)
+    getVehicleAPI = ()=> {
+        this.props.getVehicleAPI(this.props.selectedYear, this.props.selectedManufacturer, this.props.selectedModel, this.props.selector)
     }
 
     renderVehicle = () =>{
-        if (this.props.requesting_vehicle === false){
-            return <Vehicle getVehcileDetailsAPI={this.getVehcileDetailsAPI} vehicle={this.props.vehicle}/>
+        if (this.props.fedID_number){
+            return <Vehicle getVehcileDetailsAPI={this.getVehcileDetailsAPI} fedID_number={this.props.fedID_number}/>
             }
         }
 
     getVehcileDetailsAPI = ()=>{
-        this.setState({
-            vehicle_selected_id: this.props.vehicle
-        })
-        this.props.getVehicleDetailsAPI(this.props.vehicle, this.props.selector)
+        this.props.getVehicleDetailsAPI(this.props.fedID_number, this.props.selector)
     }
 
     render(){
@@ -126,8 +124,10 @@ const mapStateToProps = (state, existingProps) => ({
     selectedModel: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].selectedModel : null,
 
     vehicle_a_detail_requested: state.vehicle_a_detail_requested,
-    vehicle: state.vehicle,
-    requesting_vehicle: state.requesting_vehicle
+    fedID_number: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].fedID_number : null,
+    // vehicle: state.vehicle,
+    requesting_vehicle: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].requesting_vehicle : null,
+    // requesting_vehicle: state.requesting_vehicle
 })
 // test manual state has to match one of the returned states from year, mfg etc...
 function mapDispatchToProps(dispatch){

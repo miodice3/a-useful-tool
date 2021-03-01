@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class ModelInput extends Component {
+class ModelInput extends PureComponent {
 
     renderForm = () =>{
         return this.props.models.map((model, index)=><option key={index} value={model}>{model}</option>)
     }
 
     componentDidUpdate(){
-        // debugger
+            if (this.props.selectedModel){
+                this.props.getVehicleAPI(this.props.selectedYear, this.props.selectedManufacturer, this.props.selectedModel, this.props.selector)
+            }
     }
 
 
