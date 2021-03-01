@@ -53,15 +53,14 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
             vehicle = state.vehicles[action.selector]
             newState.vehicles[action.selector] = {
                 ...vehicle,
-                // selectedYear: action.payload
-                selectedYear: 1995
+                selectedYear: action.payload
+                // selectedYear: 1995
             }
             return newState;
 
 // *****************************************************************
 
         case 'START_GET_MANUFACTURER_REQUEST':
-            // debugger
             var newState = {...state}
 
             var vehicle = {}
@@ -90,7 +89,6 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 ...vehicle,
                 loading_manufacturers: false,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text)
-                // selectedManufacturer: null
             }
             return newState
 
@@ -145,7 +143,6 @@ export default function reducer(state={ vehicles: {} }, action){ // todo: this s
                 } 
     
             case 'ADD_DETAIL':
-                // debugger
                 let watthourspermile
                 let mpkwh
 

@@ -47,27 +47,19 @@ class VehicleSelectionContainer extends PureComponent {
 
     renderManufacturers = () =>{
         if (!this.props.requesting_manufacturer){
-            // if (!this.props.requesting_year){
             return <ManufacturerInput 
                 getModelAPI={this.getModelAPI} 
                 manufacturers={this.props.manufacturers}
                 selectedManufacturer={this.props.selectedManufacturer}
                 selector={this.props.selector}
-                setSelectedManufacturer={this.props.setSelectedManufacturer}/>
-
-                // setSelectedYear={this.props.setSelectedYear}
-                // getManufacturerAPI={this.getManufacturerAPI}
-                // years={this.props.years}
-                // selector={this.props.selector}
-                // selectedYear={this.props.selectedYear}/>
+                setSelectedManufacturer={this.props.setSelectedManufacturer}
+                selectedYear={this.props.selectedYear}
+                />
             }
         }
     
     getModelAPI = (event)=> {
-        this.setState({
-            selected_mfg: event
-        })
-        this.props.getModelAPI(this.state.selected_year, event)
+        this.props.getModelAPI(event, this.props.selectedManufacturer, this.props.selector)
     }
 
     renderModels = () =>{
@@ -135,7 +127,7 @@ function mapDispatchToProps(dispatch){
         setSelectedYear: (selectedYear, selector) => dispatch(setSelectedYear(selectedYear, selector)),
         setSelectedManufacturer: (selectedManufacturer, selector) => dispatch(setSelectedManufacturer(selectedManufacturer, selector)),
         getManufacturerAPI: (selected, selector) => dispatch(getManufacturerAPI(selected, selector)),
-        getModelAPI: (year, manufacture) => dispatch(getModelAPI(year, manufacture)),
+        getModelAPI: (year, manufacture, selector) => dispatch(getModelAPI(year, manufacture, selector)),
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
     }  
