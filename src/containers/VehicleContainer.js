@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { nationalGridAPI } from '../actions/getNationalGridAPI';
 import VehicleSelectionContainer from './vehicleSelectionContainer'
 import ApexChart from '../components/graphVehicles'
+import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 
 import { connect } from 'react-redux';
 
@@ -9,10 +10,17 @@ class VehicleContainer extends PureComponent {
 
     componentDidMount(){
         this.props.setAddForecastWithinDispatch()
+        // let a = document.location.pathname.split('/')[2]
+        // let b = document.location.pathname.split('/')[3]
+        // if (a){
+        //     this.props.getVehicleDetailsAPI(a, "A")
+        // }
+        // if (b){
+        //     this.props.getVehicleDetailsAPI(b, "B")
+        // }
     }
 
     renderGraph = ()=>{
-        // debugger
         if (this.props.vehicle_a && this.props.vehicle_b){
             return <ApexChart
                     forecasts={this.props.forecasts}
@@ -20,7 +28,6 @@ class VehicleContainer extends PureComponent {
                     vehicle_b={this.props.vehicle_b}
                 />
         }
-
     }
 
     render(){
@@ -28,11 +35,6 @@ class VehicleContainer extends PureComponent {
             <div>
                 <VehicleSelectionContainer selector="A" />
                 <VehicleSelectionContainer selector="B" />
-                {/* <ApexChart
-                    forecasts={this.props.forecasts}
-                    // vehicle_a={this.props.vehicle_a}
-                    // vehicle_b={this.props.vehicle_b}
-                /> */}
                 {this.renderGraph()}
             </div>
         )
@@ -47,7 +49,8 @@ const mapStateToProps = (state) => ({
 
 function mapDispatchToProps(dispatch){
     return {
-        setAddForecastWithinDispatch: () => dispatch(nationalGridAPI())
+        setAddForecastWithinDispatch: () => dispatch(nationalGridAPI()),
+        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
     }  
 }
 

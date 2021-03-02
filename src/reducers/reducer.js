@@ -69,7 +69,7 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
                 ...vehicle,
                 loading_manufacturers: true,
                 manufacturers: [],
-                selectedManufacturer: ""
+                // selectedManufacturer: ""
             }
             return newState
 
@@ -85,7 +85,7 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
             newState.vehicles[action.selector] = {
                 ...vehicle,
                 loading_manufacturers: false,
-                should_display_manufacturers: true,
+                // should_display_manufacturers: true,
                 manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text)
             }
             return newState
@@ -191,6 +191,7 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
                 return newState
     
             case 'ADD_DETAIL':
+                // debugger
                 var newState = {...state}
 
                 var vehicle = {}
@@ -206,6 +207,10 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
                     mpkwh = 1000 / watthourspermile
                         newState.vehicles[action.selector] = {
                             ...vehicle,
+                                // should_display_manufacturers: false,
+                                selectedYear: action.payload.vehicle.year[0],
+                                selectedManufacturer: action.payload.vehicle.make[0],
+                                selectedModel: action.payload.vehicle.model[0],
                                 vehicle_detail_requested: true,
                                 vehicle_emissions: mpkwh,
                                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
@@ -214,6 +219,10 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
                      } else {
                             newState.vehicles[action.selector] = {
                                 ...vehicle,
+                                    // should_display_manufacturers: false,
+                                    selectedYear: action.payload.vehicle.year[0],
+                                    selectedManufacturer: action.payload.vehicle.make[0],
+                                    selectedModel: action.payload.vehicle.model[0],
                                     vehicle_detail_requested: true,
                                     vehicle_emissions: action.payload.vehicle.co2TailpipeGpm[0],
                                     vehicle_fuel_type: action.payload.vehicle.fuelType[0],

@@ -15,6 +15,9 @@ class App extends React.Component {
           <Route exact path='/' />
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
           <Route exact path="/vehicles" component={VehicleContainer} />
+          <Route exact path="/vehicles/:id" component={VehicleContainer} />
+          <Route exact path="/vehicles/:id/:id" component={VehicleContainer} />
+
         </div>
         </Router>
     )
