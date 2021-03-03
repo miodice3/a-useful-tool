@@ -28,6 +28,7 @@ class VehicleSelectionContainer extends PureComponent {
     }
 
     renderYear = () => {
+        // debugger
         if (!this.props.requesting_year){
             return <YearInput
                 setSelectedYear={this.props.setSelectedYear}
@@ -69,7 +70,7 @@ class VehicleSelectionContainer extends PureComponent {
                 getVehicleAPI={this.getVehicleAPI} 
                 models={this.props.models}
                 setSelectedModel={this.props.setSelectedModel}
-                fedID_number={this.props.fedID_number}
+                
                 selectedYear={this.props.selectedYear}
                 selectedManufacturer={this.props.selectedManufacturer}
                 selectedModel={this.props.selectedModel}
@@ -85,7 +86,7 @@ class VehicleSelectionContainer extends PureComponent {
 
     renderVehicle = () =>{
         if (this.props.fedID_number){
-            return <Vehicle getVehcileDetailsAPI={this.getVehcileDetailsAPI} fedID_number={this.props.fedID_number} selector={this.props.selector}/>
+            return <Vehicle getVehcileDetailsAPI={this.getVehcileDetailsAPI} fedID_number={this.props.fedID_number}/>
             }
         }
 

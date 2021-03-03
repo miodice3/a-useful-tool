@@ -12,6 +12,7 @@ class ModelInput extends PureComponent {
             }
     }
 
+
     handleChange = (event) =>{
         this.props.setSelectedModel(event.target.value, this.props.selector)
     }
