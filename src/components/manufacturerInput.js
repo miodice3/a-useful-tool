@@ -8,8 +8,8 @@ class ManufacturerInput extends PureComponent {
         })
     }
 
-    componentDidUpdate(){
-        if (this.props.selectedManufacturer){
+    componentDidUpdate() {
+        if (this.props.selectedManufacturer) {
             this.props.getModelAPI(this.props.selectedYear, this.props.selectedManufacturer, this.props.selector)
         }
     }
@@ -27,7 +27,7 @@ class ManufacturerInput extends PureComponent {
             </div>
         )
     }
-    }
+}
 
 export default ManufacturerInput
 
