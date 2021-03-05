@@ -17,13 +17,12 @@ const store = createStore(reducer, compose(
 )
 
 ReactDOM.render(
-  <React.StrictMode>
 
     <Provider store={store}>
-      <NavBar />
-      <App />
-    </Provider>
+      {/* <NavBar />
+      <App /> */}
+    </Provider>,
 
-  </React.StrictMode>,
+
   document.getElementById('root')
 );
