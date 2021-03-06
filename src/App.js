@@ -1,5 +1,6 @@
 import NationalGridContainer from './containers/NationalGridContainer'
 import VehicleContainer from './containers/VehicleContainer'
+import LandingPage from './containers/LandingPage'
 
 import React from 'react'
 
@@ -12,7 +13,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route exact path='/' />
+          <Route exact path='/' component={LandingPage}/>
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
           <Route exact path="/vehicles" component={VehicleContainer} />
         </div>

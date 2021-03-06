@@ -1,4 +1,5 @@
 import NavBar from './components/navBar'
+import Footer from './components/footer'
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,6 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
       <NavBar />
       <App /> 
+      {/* <Footer /> */}
     </Provider>,
 
 
