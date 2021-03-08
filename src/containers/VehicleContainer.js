@@ -12,7 +12,6 @@ class VehicleContainer extends PureComponent {
     }
 
     renderGraph = ()=>{
-        // debugger
         if (this.props.vehicle_a && this.props.vehicle_b){
             return <ApexChart
                     forecasts={this.props.forecasts}
@@ -20,7 +19,6 @@ class VehicleContainer extends PureComponent {
                     vehicle_b={this.props.vehicle_b}
                 />
         }
-
     }
 
     render(){
@@ -28,11 +26,6 @@ class VehicleContainer extends PureComponent {
             <div>
                 <VehicleSelectionContainer selector="A" />
                 <VehicleSelectionContainer selector="B" />
-                {/* <ApexChart
-                    forecasts={this.props.forecasts}
-                    // vehicle_a={this.props.vehicle_a}
-                    // vehicle_b={this.props.vehicle_b}
-                /> */}
                 {this.renderGraph()}
             </div>
         )
