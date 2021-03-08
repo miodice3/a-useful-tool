@@ -20,7 +20,6 @@ const store = createStore(reducer, compose(
 ReactDOM.render(
 
     <Provider store={store}>
-
       <App /> 
       <Footer />
     </Provider>,
