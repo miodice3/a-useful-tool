@@ -20,9 +20,9 @@ const store = createStore(reducer, compose(
 ReactDOM.render(
 
     <Provider store={store}>
-      {/* <NavBar /> */}
+
       <App /> 
-      {/* <Footer /> */}
+      <Footer />
     </Provider>,
 
 
