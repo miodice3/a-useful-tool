@@ -16,9 +16,9 @@ class CommentInput extends PureComponent {
         return(
             <div>
                 <form>
-                    <input type="text" onChange={this.onChange} value={this.state.comment}/>
+                    <input type="text" onChange={this.onChange} value={this.state.comment}/><br/>
+                    <input type="submit" value="Submit Comment"/>
                 </form>
-                {this.state.comment}
             </div>
             )
     }
