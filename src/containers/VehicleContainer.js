@@ -62,6 +62,19 @@ class VehicleContainer extends PureComponent {
                         </div>
                     </div>
 
+                    <div class="col-lg-12 mb-4">
+                        <div class="card h-100">
+                            <h4 class="card-header">Join the Discussion!</h4>
+                            <div class="card-body">
+                                <p class="card-text">Have something to say about a particular vehicle?  Please select the vehicle and post your comment.</p>
+                                <VehicleSelectionContainer selector="Comment" />
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="btn btn-primary">Submit Comment!</a>
+                            </div>
+                        </div>
+                    </div>
+
 
 
 

@@ -8,9 +8,11 @@ import getManufacturerAPI from '../actions/getManufacturerAPI'
 import ModelInput from '../components/modelInput'
 import getModelAPI from '../actions/getModelAPI'
 
+
 import getVehicleAPI from '../actions/getVehicleAPI'
 
 import Vehicle from '../components/vehicle'
+import CommentInput from '../components/commentInput'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
@@ -94,6 +96,12 @@ class VehicleSelectionContainer extends PureComponent {
         this.props.getVehicleDetailsAPI(this.props.fedID_number, this.props.selector)
     }
 
+    renderComment = ()=>{
+        if (this.props.selector === "Comment" && this.props.fedID_number){
+            return <CommentInput />
+        }
+    }
+
     render(){
         return(
             <div>
@@ -101,6 +109,7 @@ class VehicleSelectionContainer extends PureComponent {
                 {this.renderManufacturers()}
                 {this.renderModels()}
                 {this.renderVehicle()}
+                {this.renderComment()}
             </div>
         )
     }
