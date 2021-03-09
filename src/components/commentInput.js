@@ -12,10 +12,17 @@ class CommentInput extends PureComponent {
         })
     }
 
+    handleSubmit = (e) =>{
+        e.preventDefault()
+        debugger
+        // this.props.create
+        
+    }
+    // need to remove events duplication from onSubmit
     render(){
         return(
             <div>
-                <form>
+                <form onSubmit={event => this.handleSubmit(event)}>
                     <input type="text" onChange={this.onChange} value={this.state.comment}/><br/>
                     <input type="submit" value="Submit Comment"/>
                 </form>

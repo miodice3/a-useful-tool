@@ -98,8 +98,12 @@ class VehicleSelectionContainer extends PureComponent {
 
     renderComment = ()=>{
         if (this.props.selector === "Comment" && this.props.fedID_number){
-            return <CommentInput />
+            return <CommentInput createCommentAPI={this.props.createCommentAPI}/>
         }
+    }
+
+    createCommentAPI = ()=>{
+        this.props.createCommentAPI(this.props.fedID_number, comment)
     }
 
     render(){
@@ -151,7 +155,8 @@ function mapDispatchToProps(dispatch){
         setSelectedModel: (selectedModel, selector) => dispatch(setSelectedModel(selectedModel, selector)),
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
-        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
+        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
+        createCommentAPI: (fedID_number, comment) => dispatch(createCommentAPI(fedID_number, comment))
     }  
 }
 
