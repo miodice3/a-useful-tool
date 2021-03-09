@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { nationalGridAPI } from '../actions/getNationalGridAPI';
 import ApexChart from '../components/graphNationalGrid'
 
+import powerplant from '../images/powerplant.png';
+
 import { connect } from 'react-redux';
 
 class NationalGridContainer extends Component {
