@@ -11,7 +11,11 @@ class ExistingCommentsContainer extends PureComponent {
 
     loadingComments = () => {
         if (this.props.loading_comments === false) {
-            this.renderComments()
+            return(
+                <ul>
+                    {this.props.comments.map((comment, index) => <li><Comment key={index} comment={comment}/></li>)}
+                </ul>
+                )
         } else {
             return "loading comments from backend"
         }

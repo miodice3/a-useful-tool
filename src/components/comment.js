@@ -3,10 +3,10 @@ import React, { PureComponent } from 'react';
 class Comment extends PureComponent {
 
     render(){
-        debugger
+        // debugger
         return(
             <>
-                im a comment
+                {this.props.comment.comment}
             </>
             )
     }
