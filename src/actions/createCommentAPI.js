@@ -10,8 +10,8 @@ export default function createCommentAPI(fed_id, selector, comment){
             "Accept": "application/json"
           },
           body: JSON.stringify({
-              id: fed_id,
-              comment: comment
+              comment: {id: fed_id,
+                comment: comment}
           })
           })
 
