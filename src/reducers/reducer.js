@@ -256,7 +256,7 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
                     // return state
 
                 case 'ADD_COMMENT':
-
+                    // debugger
                     var newState = {...state}
     
                     var vehicle = {}
@@ -266,7 +266,10 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
         
                     newState.vehicles[action.selector] = {
                         ...vehicle,
-                        comments: action.comment
+                        comments: [
+                            ...vehicle.comments,
+                            {comment: action.comment.comment}
+                        ]
                     }
                     return newState
 
@@ -274,3 +277,12 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
             return state;
     }
 }
+
+
+// {
+//     "id": 2,
+//     "fed_id": 42114,
+//     "comment": "test commetn",
+//     "created_at": "2021-03-10T15:48:10.646Z",
+//     "updated_at": "2021-03-10T15:48:10.646Z"
+//     }

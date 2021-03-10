@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react';
 import CommentInput from '../components/commentInput'
 import ExistingCommentsContainer from '../containers/ExistingCommentsContainer'
-
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import createCommentAPI from '../actions/createCommentAPI'
 
 class CommentsContainer extends PureComponent {
-
-    // componentDidMount(){
-    //     this.props.getYearAPI(this.props.selector)
-    // }
-    // {this.renderCommentInput()}
 
     renderExistingComments = () =>{
         if (this.props.selector === "Comment" && this.props.fedID_number){
@@ -30,20 +25,23 @@ class CommentsContainer extends PureComponent {
     }
 
     render(){
-        // debugger
+
         return(
             <div>
-            {/* {this.props.fedID_number} */}
-                {/* {this.renderCommentInput()} */}
-            {/* {this.props.selector} */}
+                {this.renderCommentInput()}
                 {this.renderExistingComments()}
             </div>
         )
     }
-
 }
 
-export default CommentsContainer
+function mapDispatchToProps(dispatch){
+    return {
+        createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
+    }  
+}
+
+export default connect(null, mapDispatchToProps)(CommentsContainer)
 
 // createCommentAPI = (comment)=>{
 //     this.props.createCommentAPI(this.props.fedID_number, this.props.selector, comment)

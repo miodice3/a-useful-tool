@@ -22,7 +22,6 @@ class ExistingCommentsContainer extends PureComponent {
     }
 
     renderComments = () => {
-        // debugger
         return(
         <ul>
             {this.props.comments.map((comment, index) => <li><Comment key={index} comment={comment}/></li>)}
