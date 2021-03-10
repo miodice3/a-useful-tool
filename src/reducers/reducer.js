@@ -224,7 +224,7 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
 
                 return newState
 
-            case 'START_ADD_DETAIL':
+            case 'START_ADD_COMMENT':
                 debugger
                 return state
 

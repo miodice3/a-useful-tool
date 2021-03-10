@@ -14,7 +14,7 @@ class CommentInput extends PureComponent {
 
     handleSubmit = event =>{
         event.preventDefault()
-        debugger
+        // debugger
         this.props.createCommentAPI(this.props.fedID_number, this.props.selector, this.state.comment)
     }
     // need to remove events duplication from onSubmit

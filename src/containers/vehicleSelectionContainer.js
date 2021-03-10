@@ -106,8 +106,8 @@ class VehicleSelectionContainer extends PureComponent {
         }
     }
 
-    createCommentAPI = (e)=>{
-        this.props.createCommentAPI(this.props.fedID_number, this.props.selector, e)
+    createCommentAPI = (comment)=>{
+        this.props.createCommentAPI(this.props.fedID_number, this.props.selector, comment)
     }
 
     render(){
