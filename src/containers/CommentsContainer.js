@@ -34,7 +34,7 @@ class CommentsContainer extends PureComponent {
         return(
             <div>
             {/* {this.props.fedID_number} */}
-                {this.renderCommentInput()}
+                {/* {this.renderCommentInput()} */}
             {/* {this.props.selector} */}
                 {this.renderExistingComments()}
             </div>
