@@ -224,9 +224,43 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
 
                 return newState
 
-            case 'START_ADD_COMMENT':
-                debugger
-                return state
+                case 'START_LOADING_BACKEND_COMMENTS':
+                    // debugger
+                    //comments: action.comments, switch loading to false
+                    // comments: [...state.comments, action.object]
+                    // ...state,
+                    return state
+
+                case 'LOADING_BACKEND_COMMENTS':
+                    // debugger
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle,
+                        comments: action.comments
+                    }
+                    return newState
+                    // return state
+
+                case 'ADD_COMMENT':
+
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle,
+                        comments: action.comment
+                    }
+                    return newState
 
         default:
             return state;

@@ -10,10 +10,12 @@ import getModelAPI from '../actions/getModelAPI'
 
 
 import getVehicleAPI from '../actions/getVehicleAPI'
+import retrieveCommentsAPI from '../actions/retrieveCommentsAPI'
 import createCommentAPI from '../actions/createCommentAPI'
 
 import Vehicle from '../components/vehicle'
-import CommentInput from '../components/commentInput'
+
+import CommentsContainer from '../containers/CommentsContainer'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
@@ -97,19 +99,6 @@ class VehicleSelectionContainer extends PureComponent {
         this.props.getVehicleDetailsAPI(this.props.fedID_number, this.props.selector)
     }
 
-    renderComment = ()=>{
-        if (this.props.selector === "Comment" && this.props.fedID_number){
-            return <CommentInput
-            createCommentAPI={this.props.createCommentAPI}
-            selector={this.props.selector}
-            fedID_number={this.props.fedID_number}/>
-        }
-    }
-
-    createCommentAPI = (comment)=>{
-        this.props.createCommentAPI(this.props.fedID_number, this.props.selector, comment)
-    }
-
     render(){
         return(
             <div>
@@ -117,7 +106,7 @@ class VehicleSelectionContainer extends PureComponent {
                 {this.renderManufacturers()}
                 {this.renderModels()}
                 {this.renderVehicle()}
-                {this.renderComment()}
+                <CommentsContainer fedID_number={this.props.fedID_number} selector={this.props.selector}/>
             </div>
         )
     }
@@ -144,6 +133,7 @@ const mapStateToProps = (state, existingProps) => ({
     fedID_number: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].fedID_number : null,
     // vehicle: state.vehicle,
     requesting_vehicle: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].requesting_vehicle : null,
+    comments: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].comments : null,
     // requesting_vehicle: state.requesting_vehicle
 })
 // test manual state has to match one of the returned states from year, mfg etc...
@@ -160,6 +150,7 @@ function mapDispatchToProps(dispatch){
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
+        retrieveCommentsAPI: (fedID_number, selector, event) => dispatch(retrieveCommentsAPI(fedID_number, selector, event)),
         createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
     }  
 }
