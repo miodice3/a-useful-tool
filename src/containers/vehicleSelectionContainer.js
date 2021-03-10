@@ -10,6 +10,7 @@ import getModelAPI from '../actions/getModelAPI'
 
 
 import getVehicleAPI from '../actions/getVehicleAPI'
+import createCommentAPI from '../actions/createCommentAPI'
 
 import Vehicle from '../components/vehicle'
 import CommentInput from '../components/commentInput'
@@ -98,12 +99,15 @@ class VehicleSelectionContainer extends PureComponent {
 
     renderComment = ()=>{
         if (this.props.selector === "Comment" && this.props.fedID_number){
-            return <CommentInput createCommentAPI={this.props.createCommentAPI}/>
+            return <CommentInput
+            createCommentAPI={this.props.createCommentAPI}
+            selector={this.props.selector}
+            fedID_number={this.props.fedID_number}/>
         }
     }
 
-    createCommentAPI = ()=>{
-        this.props.createCommentAPI(this.props.fedID_number, comment)
+    createCommentAPI = (e)=>{
+        this.props.createCommentAPI(this.props.fedID_number, this.props.selector, e)
     }
 
     render(){
@@ -156,7 +160,7 @@ function mapDispatchToProps(dispatch){
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
-        createCommentAPI: (fedID_number, comment) => dispatch(createCommentAPI(fedID_number, comment))
+        createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
     }  
 }
 
