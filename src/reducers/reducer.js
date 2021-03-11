@@ -34,7 +34,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 loading_manufacturers: false,
                 selectedYear: null,
                 should_display_models: false,
-                should_display_manufacturers: false
+                should_display_manufacturers: false,
+                vehicle_emissions: 0
             }
             return newState
 
@@ -61,7 +62,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 selectedManufacturer: "",
                 selectedModel: "",
                 fedID_number: null,
-                should_display_models: false
+                should_display_models: false,
+                vehicle_emissions: 0
             }
             return newState;
 
@@ -77,7 +79,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 ...vehicle,
                 loading_manufacturers: true,
                 manufacturers: [],
-                selectedManufacturer: ""
+                selectedManufacturer: "",
+                vehicle_emissions: 0
             }
             return newState
 
@@ -107,7 +110,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 ...vehicle,
                 selectedManufacturer: action.payload,
                 selectedModel: "",
-                fedID_number: null
+                fedID_number: null,
+                vehicle_emissions: 0
             }
             return newState;
 
@@ -123,7 +127,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 ...vehicle,
                 requesting_model: true,
                 models: [],
-                selectedModel: ""
+                selectedModel: "",
+                vehicle_emissions: 0
             }
             return newState
 
