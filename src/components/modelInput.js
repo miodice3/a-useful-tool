@@ -20,8 +20,8 @@ class ModelInput extends PureComponent {
     render(){
         return(
             <div onChange={this.handleChange}>
-                <select>
-                <option value="null">Select Model</option>
+                <select defaultValue="default" value={this.props.selectedModel}>
+                {!this.props.selectedModel ? <option key="default" value={null} >Select a Model</option> : null }
                 {this.renderForm()}
                 </select>
             </div>
