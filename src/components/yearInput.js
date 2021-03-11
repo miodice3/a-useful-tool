@@ -20,7 +20,7 @@ class YearInput extends PureComponent {
         return (
             <div onChange={this.handleChange}>
                 <select defaultValue="default" value={this.props.selectedYear}>
-                    {!this.props.selectedYear ? <option key="default" value={null} >please select a year</option> : null}
+                    {!this.props.selectedYear ? <option key="default" value={null} >Please Select a Year</option> : null}
                     {this.renderForm()}
                 </select>
             </div>

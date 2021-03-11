@@ -22,6 +22,7 @@ class ManufacturerInput extends PureComponent {
         return (
             <div onChange={this.handleChange}>
                 <select defaultValue="default" value={this.props.selectedManufacturer}>
+                    {!this.props.selectedManufacturer ? <option key="default" value={null} >Please Select A Manufacturer</option> : null}
                     {this.renderForm()}
                 </select>
             </div>
