@@ -32,7 +32,9 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 years: [],
                 manufacturers: [],
                 loading_manufacturers: false,
-                selectedYear: null
+                selectedYear: null,
+                should_display_models: false,
+                should_display_manufacturers: false
             }
             return newState
 
@@ -55,7 +57,11 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
             vehicle = state.vehicles[action.selector]
             newState.vehicles[action.selector] = {
                 ...vehicle,
-                selectedYear: action.payload
+                selectedYear: action.payload,
+                selectedManufacturer: "",
+                selectedModel: "",
+                fedID_number: null,
+                should_display_models: false
             }
             return newState;
 
@@ -99,7 +105,9 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
             vehicle = state.vehicles[action.selector]
             newState.vehicles[action.selector] = {
                 ...vehicle,
-                selectedManufacturer: action.payload
+                selectedManufacturer: action.payload,
+                selectedModel: "",
+                fedID_number: null
             }
             return newState;
 
