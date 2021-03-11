@@ -287,12 +287,3 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
             return state;
     }
 }
-
-
-// {
-//     "id": 2,
-//     "fed_id": 42114,
-//     "comment": "test commetn",
-//     "created_at": "2021-03-10T15:48:10.646Z",
-//     "updated_at": "2021-03-10T15:48:10.646Z"
-//     }
