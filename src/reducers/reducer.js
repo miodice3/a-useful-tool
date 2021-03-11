@@ -1,5 +1,8 @@
 
-export default function reducer(state={ vehicles: {} }, action){    switch (action.type){
+export default function reducer(state={ vehicles: {} }, action){ switch (action.type){
+
+    // dispatch({type: '@@INIT'})
+
         case 'START_ADD_FORECAST_REQUEST':
             return {
                 ...state,
@@ -53,7 +56,6 @@ export default function reducer(state={ vehicles: {} }, action){    switch (acti
             newState.vehicles[action.selector] = {
                 ...vehicle,
                 selectedYear: action.payload
-                // selectedYear: 1995
             }
             return newState;
 
