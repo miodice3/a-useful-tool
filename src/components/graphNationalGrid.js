@@ -26,7 +26,7 @@ function NationalGridGraph(props){
           categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"]
         },
         title: {
-          text: "Grams co2 per kWh",
+          text: "Grams CO2 per kW h",
           align: 'center',
           style:{fontSize: 25}
         },

@@ -35,7 +35,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 selectedYear: null,
                 should_display_models: false,
                 should_display_manufacturers: false,
-                vehicle_emissions: 0
+                vehicle_emissions: 0,
+                vehicle_fuel_type: ""
             }
             return newState
 
@@ -80,7 +81,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 loading_manufacturers: true,
                 manufacturers: [],
                 selectedManufacturer: "",
-                vehicle_emissions: 0
+                vehicle_emissions: 0,
+                vehicle_fuel_type: ""
             }
             return newState
 
@@ -128,7 +130,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                 requesting_model: true,
                 models: [],
                 selectedModel: "",
-                vehicle_emissions: 0
+                vehicle_emissions: 0,
+                vehicle_fuel_type: ""
             }
             return newState
 

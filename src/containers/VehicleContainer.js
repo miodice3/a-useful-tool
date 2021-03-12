@@ -53,8 +53,12 @@ class VehicleContainer extends PureComponent {
                             <h4 class="card-header">Comparative Analysis</h4>
                             <div class="card-body">
                                 {this.renderGraph()}
-                                <p class="card-text">Traditional fuel cars have data reported directly from the EPA.  Electric powered vehicles need a conversion, from the provided kWh/100 miles, and are combined with UK's realtime grid data.  Therefore, electric vehicles will attributable emissions will be graphed according to the carbon intensity at that moment in time. Fossil fuels, have a consistent amount of co2 per gallon, and therefore will show steady emissions.</p>
-                                <p>Emissions data are gathered while the vehicle is brand new. All vehicles decline over time.  Tampering with, removing emissions controls, tuning, or other vehicle modifications like raising suspension heights, larger tires, bicycle racks, additional weight left in the vehicles, will impact emissions profiles.  Data reported are for new, stock configurations only.</p>
+                                <p class="card-text">
+                                Traditional fuel cars display data taken directly from the EPA.  Pure electric vehicles data are given in kW h/100 miles, and require a conversion to grams CO2 per mile.*</p>
+                                <p>This conversion is computed using the forecasted grams CO2 per kW h from the UK's grid.  Therefore, EV's efficiencies vary depending on how clean the power is when the car is charged. This gives a good visual to show the range of pollution, and how emissions can be minimized for electric vehicles depending on the time of the day they are charged.</p>
+                                <p>Fossil fuels have a consistent amount of CO2 per gallon, and therefore will show steady emissions.</p>
+                                <p>Emissions data is gathered while the vehicle is brand new.  Tampering with, removing emissions controls, raising suspension heights, larger tires, racks, or additional weight left in the vehicles, will impact emissions.  Data reported are for new, factory configurations only.</p>
+                                <p>*PHEVs report combined data, and it is not immediately clear how these numbers are to be used.  Due to this, PHEV's emissions data displayed in the chart are likely incomplete, and will vary dependent on vehicle driving modes.</p>
                             </div>
                             <div class="card-footer">
                                 <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>

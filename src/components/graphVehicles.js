@@ -26,7 +26,7 @@ function VehicleGraph(props){
           categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"]
         },
         title: {
-          text: "Grams co2 per mile driven, using estimate co2 emissions",
+          text: "Grams CO2 per mile driven",
           align: 'center',
           style:{fontSize: 25}
         },
