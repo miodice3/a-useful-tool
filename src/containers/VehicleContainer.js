@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { nationalGridAPI } from '../actions/getNationalGridAPI';
 import VehicleSelectionContainer from './vehicleSelectionContainer'
-import ApexChart from '../components/graphVehicles'
+import ApexChartGPM from '../components/graphVehicles'
+import ApexChartLTV from '../components/graphVehiclesLTV'
 
 import { connect } from 'react-redux';
 
@@ -11,9 +12,19 @@ class VehicleContainer extends PureComponent {
         this.props.setAddForecastWithinDispatch()
     }
 
-    renderGraph = () => {
+    renderGraphGPM = () => {
         if (this.props.vehicle_a && this.props.vehicle_b) {
-            return <ApexChart
+            return <ApexChartGPM
+                forecasts={this.props.forecasts}
+                vehicle_a={this.props.vehicle_a}
+                vehicle_b={this.props.vehicle_b}
+            />
+        }
+    }
+
+    renderLifetimeGraph = () => {
+        if (this.props.vehicle_a && this.props.vehicle_b) {
+            return <ApexChartLTV
                 forecasts={this.props.forecasts}
                 vehicle_a={this.props.vehicle_a}
                 vehicle_b={this.props.vehicle_b}
@@ -48,17 +59,30 @@ class VehicleContainer extends PureComponent {
                         </div>
                     </div>
 
-                    <div class="col-lg-12 mb-4">
+                    <div class="col-lg-6 mb-4">
                         <div class="card h-100">
                             <h4 class="card-header">Comparative Analysis</h4>
                             <div class="card-body">
-                                {this.renderGraph()}
+                                {this.renderGraphGPM()}
                                 <p class="card-text">
                                 Traditional fuel cars display data taken directly from the EPA.  Pure electric vehicles data are given in kW h/100 miles, and require a conversion to grams CO2 per mile.*</p>
                                 <p>This conversion is computed using the forecasted grams CO2 per kW h from the UK's grid.  Therefore, EV's efficiencies vary depending on how clean the power is when the car is charged. This gives a good visual to show the range of pollution, and how emissions can be minimized for electric vehicles depending on the time of the day they are charged.</p>
                                 <p>Fossil fuels have a consistent amount of CO2 per gallon, and therefore will show steady emissions.</p>
                                 <p>Emissions data is gathered while the vehicle is brand new.  Tampering with, removing emissions controls, raising suspension heights, larger tires, racks, or additional weight left in the vehicles, will impact emissions.  Data reported are for new, factory configurations only.</p>
                                 <p>*PHEVs report combined data, and it is not immediately clear how these numbers are to be used.  Due to this, PHEV's emissions data displayed in the chart are likely incomplete, and will vary dependent on vehicle driving modes.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <h4 class="card-header">Estimated lifetime differential @ 150,000 Miles</h4>
+                            <div class="card-body">
+                                {this.renderLifetimeGraph()}
+                                <p class="card-text">some future text</p>
                             </div>
                             <div class="card-footer">
                                 <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
