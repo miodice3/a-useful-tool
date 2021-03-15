@@ -22,42 +22,51 @@ function VehicleGraph(props){
           curve: 'smooth'
         },
         xaxis: {
-          type: 'datetime',
-          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z"]
+          type: 'numeric',
+          categories: [0, 18750, 37500, 56250, 75000, 93750, 112500, 131250, 150000]
         },
         title: {
-          text: "Grams CO2 per mile driven",
+          text: "Lifetime kg CO2",
           align: 'center',
           style:{fontSize: 25}
         },
         tooltip: {
           x: {
-            format: 'yy/MM/dd HH:mm'
+            format: 'numeric'
           },
         },
       }
 
-      // NEED CHANGE UNITS GRAMS TO KG
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      let mileage = [0, 18750, 37500, 56250, 75000, 93750, 112500, 131250, 150000]
 
       if (props.forecasts === undefined) {
       } else {
         if (props.vehicle_a.vehicle_fuel_type !== "Electricity"){
-            series[0].data = props.forecasts.map(()=>(Math.round(props.vehicle_a.vehicle_emissions)))
-        } else if (props.vehicle_a.vehicle_fuel_type === "Electricity") {
-            series[0].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_a.vehicle_emissions)))
-        } 
-        options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
+          series[0].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_a.vehicle_emissions / 1000)))
+
+        } else if (props.vehicle_a.vehicle_fuel_type === "Electricity") {          
+          let total_forecast_a = props.forecasts.map(forecast=>forecast.intensity.forecast)
+          let summed_forecast_a = total_forecast_a.reduce(reducer)
+          let avg_g_mile_a = (Math.round(summed_forecast_a / total_forecast_a.length))
+
+          series[0].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile_a/props.vehicle_a.vehicle_emissions / 1000)))
+        }
       }
 
       if (props.forecasts === undefined) {
       } else {
         if (props.vehicle_b.vehicle_fuel_type !== "Electricity"){
-            series[1].data = props.forecasts.map(()=>(Math.round(props.vehicle_b.vehicle_emissions)))
+          series[1].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_b.vehicle_emissions / 1000)))
+
         } else if (props.vehicle_b.vehicle_fuel_type === "Electricity") {
-        series[1].data = props.forecasts.map(forecast=>(Math.round(forecast.intensity.forecast/props.vehicle_b.vehicle_emissions)))
+          let total_forecast = props.forecasts.map(forecast=>forecast.intensity.forecast)
+          let summed_forecast = total_forecast.reduce(reducer)
+          let avg_g_mile = (Math.round(summed_forecast / total_forecast.length))
+
+          series[1].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile/props.vehicle_b.vehicle_emissions / 1000)))
+        }
       }
-      options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
-    }
 
     return(
         <div>

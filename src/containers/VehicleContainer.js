@@ -84,9 +84,9 @@ class VehicleContainer extends PureComponent {
                                 {this.renderLifetimeGraph()}
                                 <p class="card-text">some future text</p>
                             </div>
-                            <div class="card-footer">
+                            {/* <div class="card-footer">
                                 <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
