@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import powerplant from '../images/powerplant.png';
 import testcycle from '../images/testcycle.png';
+import electricbike from '../images/electricbike.png'
 
 class LandingPage extends PureComponent {
 
@@ -25,6 +26,13 @@ class LandingPage extends PureComponent {
                             <div class="carousel-caption d-none d-md-block">
                             <h5><a style={{textDecoration: "none", color: 'white'}} href="/vehicles">US Federal Emissions</a></h5>
                             <p style={{color: 'white'}}>Select any two cars to compare emissions data</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img style={{opacity: ".65"}} class="d-block w-100" src={electricbike} alt="Third slide"/>
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5><a style={{textDecoration: "none", color: 'white'}} href="/pev">E-bikes and other PEVs</a></h5>
+                            <p style={{color: 'white'}}>Compare your current vehicle with an E-bike, Electric Scooter or other PEV</p>
                             </div>
                         </div>
                     </div>
