@@ -1,5 +1,96 @@
+import { combineReducers } from "redux";
 
-export default function reducer(state={ vehicles: {} }, action){ switch (action.type){
+// const rootReducer = combineReducers({
+//     forecasts: forecastsReducer,
+//     years: yearsReducer
+// })
+
+// export default rootReducer;
+
+// function forecastsReducer(state={vehicles: {} }, action){ switch (action.type){
+
+//         case 'START_ADD_FORECAST_REQUEST':
+            
+//             return {
+//                 ...state,
+//                 requesting: true
+//             }  
+//         case 'ADD_FORECAST':
+
+//             return {
+//                 ...state,
+//                 forecasts: action.payload.map(schedule => schedule),
+//                 requesting: false
+//             }
+
+//     default:
+//         return state;
+
+// }}
+
+// function yearsReducer(state={vehicles: {} }, action){ switch (action.type){
+
+//         case 'START_GET_YEAR_REQUEST':
+
+//             var newState = {
+//                 ...state
+//             }
+
+//             var vehicle = {}
+//             if (state.vehicles[action.selector]) {
+//                 vehicle = state.vehicles[action.selector]
+//             }
+
+//             newState.vehicles[action.selector] = {
+//                 ...vehicle,
+//                 loading: true,
+//                 years: [],
+//                 manufacturers: [],
+//                 loading_manufacturers: false,
+//                 selectedYear: null,
+//                 should_display_models: false,
+//                 should_display_manufacturers: false,
+//                 vehicle_emissions: 0,
+//                 vehicle_fuel_type: ""
+//             }
+//             return newState
+
+//         case 'ADD_YEAR':
+//             var newState = {
+//                 ...state
+//             }
+//             vehicle = state.vehicles[action.selector]
+//             newState.vehicles[action.selector] = {
+//                 ...vehicle,
+//                 loading: false,
+//                 years: action.payload.menuItems.menuItem.map(year => year)
+//             }
+//             return newState
+
+//         case 'YEAR_SELECTED':
+//             var newState = {
+//                 ...state
+//             }
+//             vehicle = state.vehicles[action.selector]
+//             newState.vehicles[action.selector] = {
+//                 ...vehicle,
+//                 selectedYear: action.payload,
+//                 selectedManufacturer: "",
+//                 selectedModel: "",
+//                 fedID_number: null,
+//                 should_display_models: false,
+//                 vehicle_emissions: 0
+//             }
+//             return newState;
+
+// default:
+//     return state;
+
+// }}
+
+
+
+export default function rootReducer(state={ vehicles: {} }, action){ switch (action.type){
 
     // dispatch({type: '@@INIT'})
 
@@ -257,7 +348,7 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                     return newState
 
                 case 'LOADING_BACKEND_COMMENTS':
-                    // debugger
+
                     var newState = {...state}
     
                     var vehicle = {}
@@ -271,10 +362,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                         loading_comments: false
                     }
                     return newState
-                    // return state
 
                 case 'ADD_COMMENT':
-                    // debugger
                     var newState = {...state}
     
                     var vehicle = {}
@@ -329,18 +418,6 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                                         selectedManufacturer: "",
                                         selectedModel: ""
                                     }
-
-                    // if (action.payload.vehicle.fuelType[0] === "Electricity"){
-                    //     watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
-                    //     mpkwh = 1000 / watthourspermile
-                    //         newState.vehicles[action.selector] = {
-                    //             ...vehicle,
-                    //                 vehicle_detail_requested: true,
-                    //                 vehicle_emissions: mpkwh,
-                    //                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
- 
-                    //             }
-                    //         } 
     
                     return newState
 
