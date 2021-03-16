@@ -1,6 +1,3 @@
-import NavBar from './components/navBar'
-import Footer from './components/footer'
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -16,14 +13,15 @@ import logger from 'redux-logger'
 //   applyMiddleware(thunk, logger),
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 // )
+//FOR DEVELOPMENT, TEST ADD ROOTREDUCER
 
 const store = createStore(reducer, applyMiddleware(thunk, logger))
+// const store = createStore(reducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
 
     <Provider store={store}>
       <App /> 
-      <Footer />
     </Provider>,
 
   document.getElementById('root')

@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 class PEVInput extends PureComponent {
 
     state = {}
-    // need to put validations for numbers only.
+
     batterySize = (event) =>{
         this.setState({
             batterySize: event.target.value
@@ -37,15 +37,13 @@ class PEVInput extends PureComponent {
                 placeholder="1325"
                 /><br/>
 
-                <label>
-                    Miles of Range
-                </label><br/>
+                <label>Miles of Range</label><br/>
                 <input type="text"
-                pattern="[0-9]*"
-                onChange={this.milesRange}
-                value={this.state.milesRange}
-                placeholder="30"
-                /><br/>
+                    pattern="[0-9]*"
+                    onChange={this.milesRange}
+                    value={this.state.milesRange}
+                    placeholder="30"
+                    /><br/>
                 <button type="submit">Submit Data</button>
             </form>
 

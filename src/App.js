@@ -3,6 +3,7 @@ import VehicleContainer from './containers/VehicleContainer'
 import PEVContainer from './containers/PEVContainer'
 import LandingPage from './containers/LandingPage'
 import NavBar from './components/navBar'
+import Footer from './components/footer'
 
 import React from 'react'
 
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Route exact path="/vehicles" component={VehicleContainer} />
           <Route exact path="/pev" component={PEVContainer} />
         </div>
+        <Footer />
         </Router>
     )
   }
