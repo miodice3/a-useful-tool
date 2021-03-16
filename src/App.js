@@ -18,7 +18,7 @@ class App extends React.Component {
           <Route exact path='/' component={LandingPage}/>
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
           <Route exact path="/vehicles" component={VehicleContainer} />
-          {/* <Route exact path="/pev" component={VehicleContainer} /> */}
+          <Route exact path="/pev" component={VehicleContainer} />
         </div>
         </Router>
     )

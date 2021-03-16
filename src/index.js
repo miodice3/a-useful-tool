@@ -26,6 +26,5 @@ ReactDOM.render(
       <Footer />
     </Provider>,
 
-
   document.getElementById('root')
 );

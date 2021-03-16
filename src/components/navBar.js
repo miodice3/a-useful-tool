@@ -14,6 +14,9 @@ function NavBar() {
                     <li class="nav-item">
                     <a class="nav-link" href="/vehicles">Compare Vehicle Emissions from US's Federal Database</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/pev">Ebikes and PEVs Estimations</a>
+                    </li>
                 </ul>
                 </div>
             </div>
