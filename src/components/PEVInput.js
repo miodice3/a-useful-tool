@@ -31,16 +31,20 @@ class PEVInput extends PureComponent {
                     (typ: max voltage * amperage * .8)
                 </label><br/>
                 <input type="text"
+                pattern="[0-9]*"
                 onChange={this.batterySize}
                 value={this.state.batterySize}
+                placeholder="1325"
                 /><br/>
 
                 <label>
                     Miles of Range
                 </label><br/>
                 <input type="text"
+                pattern="[0-9]*"
                 onChange={this.milesRange}
                 value={this.state.milesRange}
+                placeholder="30"
                 /><br/>
                 <button type="submit">Submit Data</button>
             </form>
