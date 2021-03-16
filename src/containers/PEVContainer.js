@@ -88,29 +88,8 @@ class PEVContainer extends PureComponent {
                                 <p>For Electric vehicles, the average value of the UK's pollution level for the current 48 hour period is applied to the combined efficiency rating of the EV.  The resulting pollution, converted to gram/CO2 per mile, is then used in the same linear equation with 150,000 miles.</p>
                                 <p>The rating for electric vehicles will vary as the average pollution intensity changes day to day, but this can be used to give a general idea of the differences over a period of time.  Many electrical suppliers are well underway with transition plans to integrate less carbon intensive electricity to the grid.  Therefore, using todays estimates for the next 8 years or 150,000 mile estimates, could result in higher than actual projections.</p>
                             </div>
-                            {/* <div class="card-footer">
-                                <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
-                            </div> */}
                         </div>
                     </div>
-
-                    {/* <div class="col-lg-12 mb-4">
-                        <div class="card h-100">
-                            <h4 class="card-header">Join the Discussion!</h4>
-                            <div class="card-body">
-                                <p class="card-text">Have something to say about a particular vehicle?  Please select the vehicle and post your comment.</p>
-                                <VehicleSelectionContainer selector="Comment" />
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Submit Comment!</a>
-                            </div>
-                        </div>
-                    </div> */}
-
-
-
-
-
 
                 </div>
             </div>
