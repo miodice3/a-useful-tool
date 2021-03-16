@@ -19,7 +19,7 @@ function VehicleGraph(props){
           enabled: false
         },
         stroke: {
-          curve: 'smooth'
+          curve: 'straight'
         },
         xaxis: {
           type: 'numeric',
