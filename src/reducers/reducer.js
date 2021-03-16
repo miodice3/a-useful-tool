@@ -216,8 +216,8 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                     vehicle = state.vehicles[action.selector]
                 }
     
-                let watthourspermile
-                let mpkwh
+                var watthourspermile
+                var mpkwh
 
                 if (action.payload.vehicle.fuelType[0] === "Electricity"){
                     watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
@@ -289,6 +289,59 @@ export default function reducer(state={ vehicles: {} }, action){ switch (action.
                             {comment: action.comment.comment}
                         ]
                     }
+                    return newState
+
+                case 'CREATE_PEV_SELF':
+                    var newState = {
+                        ...state
+                    }
+        
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle
+                    }
+                    return newState
+
+                case 'UPDATE_PEV_STAT':
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    var watthourspermile
+                    var mpkwh
+    
+                    watthourspermile = action.batterySize/action.milesRange
+                    mpkwh = 1000 / watthourspermile
+
+                    newState.vehicles[action.selector] = {
+                                    ...vehicle,
+                                        // vehicle_detail_requested: true,
+                                        vehicle_emissions: mpkwh,
+                                        vehicle_fuel_type: "Electricity",
+                                        selectedYear: "Custom Personal Electric Vehicle",
+                                        selectedManufacturer: "",
+                                        selectedModel: ""
+                                    }
+
+                    // if (action.payload.vehicle.fuelType[0] === "Electricity"){
+                    //     watthourspermile = (action.payload.vehicle.combE[0] * 1000 / 100) //kwh to watt hours, divided by 100 miles
+                    //     mpkwh = 1000 / watthourspermile
+                    //         newState.vehicles[action.selector] = {
+                    //             ...vehicle,
+                    //                 vehicle_detail_requested: true,
+                    //                 vehicle_emissions: mpkwh,
+                    //                 vehicle_fuel_type: action.payload.vehicle.fuelType[0],
+ 
+                    //             }
+                    //         } 
+    
                     return newState
 
         default:

@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 
 import PEVInput from '../components/PEVInput'
 
-import setSelectedModel from '../actions/setSelectedModel'
+import createPEVSelf from '../actions/createPEVSelf'
+import updatePEVStat from '../actions/updatePEVStat'
 
 import { connect } from 'react-redux';
 
@@ -12,8 +13,12 @@ class PEVSelectionContainer extends PureComponent {
     // create on content loaded lifecycle function to check if selector component exists, if it does not, create itself
     // completing both selector A & B in state will trigger graph to render
 
+    componentDidMount(){
+        this.props.createPEVSelf(this.props.selector)
+    }
+
     updatePEVStats = (batterySize, milesRange) => {
-        console.log("battery size: ", batterySize, " miles range: ", milesRange)
+        this.props.updatePEVStat(this.props.selector, batterySize, milesRange)
     }
 
     render(){
@@ -52,21 +57,9 @@ const mapStateToProps = (state, existingProps) => ({
 // test manual state has to match one of the returned states from year, mfg etc...
 function mapDispatchToProps(dispatch){
     return {
-        // getYearAPI: (selector) => dispatch(getYearAPI(selector)),
-        // setSelectedYear: (selectedYear, selector) => dispatch(setSelectedYear(selectedYear, selector)),
-        
-        // getManufacturerAPI: (selected, selector) => dispatch(getManufacturerAPI(selected, selector)),
-        // setSelectedManufacturer: (selectedManufacturer, selector) => dispatch(setSelectedManufacturer(selectedManufacturer, selector)),
-        
-        // getModelAPI: (year, manufacture, selector) => dispatch(getModelAPI(year, manufacture, selector)),
-        // setSelectedModel: (selectedModel, selector) => dispatch(setSelectedModel(selectedModel, selector)),
-
-        // getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
-        // getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
-        // retrieveCommentsAPI: (fedID_number, selector, event) => dispatch(retrieveCommentsAPI(fedID_number, selector, event)),
-        // createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
+        createPEVSelf: (selector) => dispatch(createPEVSelf(selector)),
+        updatePEVStat: (selector, batterySize, milesRange) => dispatch(updatePEVStat(selector, batterySize, milesRange))
     }  
 }
 
-export default PEVSelectionContainer
-// export default connect(mapStateToProps, mapDispatchToProps)(PEVSelectionContainer)
+export default connect(null, mapDispatchToProps)(PEVSelectionContainer)
