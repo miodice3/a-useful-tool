@@ -45,7 +45,7 @@ class PEVContainer extends PureComponent {
                 <div class="row">
                     <div class="col-lg-6 mb-4">
                         <div class="card h-100">
-                            <h4 class="card-header">Vehicle A</h4>
+                            <h4 class="card-header">Select your current vehicle!</h4>
                             <div class="card-body">
                             <VehicleSelectionContainer selector="A" />
                             </div>
