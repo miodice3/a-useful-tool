@@ -8,6 +8,11 @@ import { connect } from 'react-redux';
 
 class PEVSelectionContainer extends PureComponent {
 
+
+    // create on content loaded lifecycle function to check if selector component exists, if it does not, create itself
+    // completing both selector A & B in state will trigger graph to render
+
+
     render(){
         return(
             <div>
