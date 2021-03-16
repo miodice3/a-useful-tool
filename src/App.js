@@ -1,5 +1,6 @@
 import NationalGridContainer from './containers/NationalGridContainer'
 import VehicleContainer from './containers/VehicleContainer'
+import PEVContainer from './containers/PEVContainer'
 import LandingPage from './containers/LandingPage'
 import NavBar from './components/navBar'
 
@@ -18,7 +19,7 @@ class App extends React.Component {
           <Route exact path='/' component={LandingPage}/>
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
           <Route exact path="/vehicles" component={VehicleContainer} />
-          <Route exact path="/pev" component={VehicleContainer} />
+          <Route exact path="/pev" component={PEVContainer} />
         </div>
         </Router>
     )
