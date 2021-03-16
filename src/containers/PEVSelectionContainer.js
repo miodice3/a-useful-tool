@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import PEVInput from '../components/PEVInput'
+
 import setSelectedModel from '../actions/setSelectedModel'
 
 import { connect } from 'react-redux';
@@ -10,6 +12,7 @@ class PEVSelectionContainer extends PureComponent {
         return(
             <div>
                 sample text
+                <PEVInput />
             </div>
         )
     }

@@ -12,12 +12,12 @@ import reducer from './reducers/reducer';
 
 import logger from 'redux-logger'
 
-// const store = createStore(reducer, compose(
-//   applyMiddleware(thunk, logger),
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-// )
+const store = createStore(reducer, compose(
+  applyMiddleware(thunk, logger),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+)
 
-const store = createStore(reducer, applyMiddleware(thunk, logger))
+// const store = createStore(reducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
 
