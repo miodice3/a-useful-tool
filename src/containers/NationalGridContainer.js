@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { nationalGridAPI } from '../actions/getNationalGridAPI';
 import ApexChart from '../components/graphNationalGrid'
 
-import powerplant from '../images/powerplant.png';
-
 import { connect } from 'react-redux';
 
 class NationalGridContainer extends Component {
@@ -31,7 +29,7 @@ class NationalGridContainer extends Component {
                         <p>This graph will automatically update with the current time, so feel free to come back for a live update!</p>
                     </div>
                     <div class="card-footer">
-                        <a href="https://carbonintensity.org.uk/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
+                        <a href="https://carbonintensity.org.uk/" target="_blank" rel="noreferrer" class="btn btn-primary">Find Primary Source Data Here</a>
                     </div>
                     </div>
                 </div>

@@ -74,7 +74,7 @@ class PEVContainer extends PureComponent {
                                 <p>*PHEVs report combined data, and it is not immediately clear how these numbers are to be used.  Due to this, PHEV's emissions data displayed in the chart are likely incomplete, and will vary dependent on vehicle driving modes.</p>
                             </div>
                             <div class="card-footer">
-                                <a href="https://www.fueleconomy.gov/" target="_blank" class="btn btn-primary">Find Primary Source Data Here</a>
+                                <a href="https://www.fueleconomy.gov/" target="_blank" rel="noreferrer" class="btn btn-primary">Find Primary Source Data Here</a>
                             </div>
                         </div>
                     </div>
