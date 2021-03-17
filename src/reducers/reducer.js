@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 const rootReducer = combineReducers({
     forecasts: forecastsReducer,
     vehicles: yearsReducer,
-    pev: pevReducer
+    // pev: pevReducer
 })
 
 export default rootReducer;
