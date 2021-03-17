@@ -114,31 +114,29 @@ class VehicleSelectionContainer extends PureComponent {
 
 const mapStateToProps = (state, existingProps) => ({
     ...existingProps,
-    years: state.vehicles.vehicles.[existingProps.selector] ? state.vehicles.vehicles.[existingProps.selector].years : [],
+    years: state.year.vehicles.[existingProps.selector] ? state.year.vehicles.[existingProps.selector].years : [],
 
-    requesting_year: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].loading : true,
-    selectedYear: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].selectedYear : null,
+    requesting_year: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].loading : true,
+    selectedYear: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].selectedYear : null,
 
-    manufacturers: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].manufacturers : [],
-    loading_manufacturers: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].loading_manufacturers : false,
-    should_display_manufacturers: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].should_display_manufacturers : false,
-    selectedManufacturer: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].selectedManufacturer : null,
+    manufacturers: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].manufacturers : [],
+    loading_manufacturers: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].loading_manufacturers : false,
+    should_display_manufacturers: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].should_display_manufacturers : false,
+    selectedManufacturer: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].selectedManufacturer : null,
 
-
-    // models: state.models,
-    models: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].models : [],
+    models: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].models : [],
     requesting_model: state.requesting_model,
-    should_display_models: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].should_display_models : false,
-    selectedModel: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].selectedModel : null,
+    should_display_models: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].should_display_models : false,
+    selectedModel: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].selectedModel : null,
 
     vehicle_a_detail_requested: state.vehicle_a_detail_requested,
-    fedID_number: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].fedID_number : null,
-    // vehicle: state.vehicle,
-    requesting_vehicle: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].requesting_vehicle : null,
-    comments: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].comments : null,
-    // requesting_vehicle: state.requesting_vehicle
+    fedID_number: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].fedID_number : null,
+
+    requesting_vehicle: state.year.vehicles[existingProps.selector] ? state.year.vehicles[existingProps.selector].requesting_vehicle : null,
+    comments: state.year[existingProps.selector] ? state.year[existingProps.selector].comments : null,
+
 })
-// test manual state has to match one of the returned states from year, mfg etc...
+
 function mapDispatchToProps(dispatch){
     return {
         getYearAPI: (selector) => dispatch(getYearAPI(selector)),
@@ -152,6 +150,7 @@ function mapDispatchToProps(dispatch){
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
         getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
+
         retrieveCommentsAPI: (fedID_number, selector, event) => dispatch(retrieveCommentsAPI(fedID_number, selector, event)),
         createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
     }  

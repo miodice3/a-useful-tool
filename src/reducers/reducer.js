@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
     forecasts: forecastsReducer,
-    vehicles: yearsReducer,
+    year: yearsReducer,
     // pev: pevReducer
 })
 
