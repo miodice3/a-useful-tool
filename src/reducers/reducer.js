@@ -2,12 +2,12 @@ import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
     forecasts: forecastsReducer,
-    // years: yearsReducer
+    vehicles: yearsReducer
 })
 
 export default rootReducer;
 
-function forecastsReducer(state={vehicles: {} }, action){ switch (action.type){
+function forecastsReducer(state={}, action){ switch (action.type){
 
         case 'START_ADD_FORECAST_REQUEST':
             
@@ -83,8 +83,102 @@ function yearsReducer(state={vehicles: {} }, action){ switch (action.type){
             }
             return newState;
 
-default:
-    return state;
+        case 'START_GET_MANUFACTURER_REQUEST':
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading_manufacturers: true,
+                manufacturers: [],
+                selectedManufacturer: "",
+                vehicle_emissions: 0,
+                vehicle_fuel_type: ""
+            }
+            return newState
+
+        case 'ADD_MANUFACTURER':
+
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                loading_manufacturers: false,
+                should_display_manufacturers: true,
+                manufacturers: action.payload.menuItems.menuItem.map(manufacturer => manufacturer.text)
+            }
+            return newState
+
+        case 'MANUFACTURER_SELECTED':
+            var newState = {
+                ...state
+            }
+            vehicle = state.vehicles[action.selector]
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                selectedManufacturer: action.payload,
+                selectedModel: "",
+                fedID_number: null,
+                vehicle_emissions: 0
+            }
+            return newState;
+
+        case 'START_GET_MODEL_REQUEST':
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_model: true,
+                models: [],
+                selectedModel: "",
+                vehicle_emissions: 0,
+                vehicle_fuel_type: ""
+            }
+            return newState
+
+        case 'ADD_MODEL':
+            var newState = {...state}
+
+            var vehicle = {}
+            if (state.vehicles[action.selector]) {
+                vehicle = state.vehicles[action.selector]
+            }
+
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                requesting_model: false,
+                should_display_models: true,
+                models: action.payload.menuItems.menuItem.map(model => model.text[0])
+            }
+            return newState
+
+            case 'MODEL_SELECTED':
+                var newState = {
+                    ...state
+                }
+                vehicle = state.vehicles[action.selector]
+                newState.vehicles[action.selector] = {
+                    ...vehicle,
+                    selectedModel: action.payload
+                }
+                return newState;
+
+            default:
+                return state;
 
 }}
 
@@ -252,6 +346,14 @@ default:
 //                     selectedModel: action.payload
 //                 }
 //                 return newState;
+
+
+
+
+
+
+
+
 
 //         case 'START_GET_VEHICLE_REQUEST':
 //             var newState = {...state}
