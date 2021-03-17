@@ -2,8 +2,7 @@ import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
     forecasts: forecastsReducer,
-    vehicles: yearsReducer,
-    // pev: pevReducer
+    vehicles: yearsReducer
 })
 
 export default rootReducer;
@@ -45,10 +44,6 @@ function yearsReducer(state={vehicles: {} }, action){ switch (action.type){
             newState.vehicles[action.selector] = {
                 ...vehicle,
                 loading: true,
-                years: [],
-                manufacturers: [],
-                loading_manufacturers: false,
-                selectedYear: null,
                 should_display_models: false,
                 should_display_manufacturers: false,
                 vehicle_emissions: 0,
@@ -298,22 +293,58 @@ function yearsReducer(state={vehicles: {} }, action){ switch (action.type){
         
                         return newState
 
+                case 'START_LOADING_BACKEND_COMMENTS':
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle,
+                        loading_comments: true
+                    }
+                    return newState
+
+                case 'LOADING_BACKEND_COMMENTS':
+
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle,
+                        comments: action.comments,
+                        loading_comments: false
+                    }
+                    return newState
+
+                case 'ADD_COMMENT':
+                    var newState = {...state}
+    
+                    var vehicle = {}
+                    if (state.vehicles[action.selector]) {
+                        vehicle = state.vehicles[action.selector]
+                    }
+        
+                    newState.vehicles[action.selector] = {
+                        ...vehicle,
+                        comments: [
+                            ...vehicle.comments,
+                            {comment: action.comment.comment}
+                        ]
+                    }
+                    return newState
+
 
             default:
                 return state;
 
 }}
-
-function pevReducer(state={}, action){ switch (action.type){
-
-
-
-
-        default:
-            return state;
-
-}}
-
 
 //                 case 'START_LOADING_BACKEND_COMMENTS':
 //                     var newState = {...state}
