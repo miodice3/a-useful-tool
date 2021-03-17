@@ -111,8 +111,8 @@ class VehicleContainer extends PureComponent {
 
 const mapStateToProps = (state) => ({
     forecasts: state.forecasts.forecasts,
-    vehicle_a: state.year.vehicles.A ? state.year.vehicles.A : null,
-    vehicle_b: state.year.vehicles.B ? state.year.vehicles.B : null
+    vehicle_a: state.vehicles.vehicles.A ? state.vehicles.vehicles.A : null,
+    vehicle_b: state.vehicles.vehicles.B ? state.vehicles.vehicles.B : null
 })
 
 function mapDispatchToProps(dispatch) {
