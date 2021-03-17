@@ -37,12 +37,10 @@ function NationalGridGraph(props){
         },
       }
 
-      if (props.forecasts === undefined) {
-      } else {
-
-        series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
-        series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
-        options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
+        if (props.forecasts !== null) {
+          series[0].data = props.forecasts.map(forecast=>forecast.intensity.forecast)
+          series[1].data = props.forecasts.map(forecast=>forecast.intensity.actual)
+          options.xaxis.categories = props.forecasts.map(forecast=>forecast.from)
       }
 
     return(
