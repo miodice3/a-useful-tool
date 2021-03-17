@@ -47,8 +47,8 @@ function mapDispatchToProps(dispatch){
 
 const mapStateToProps = (state, existingProps) => ({
     ...existingProps,
-    comments: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].comments : null,
-    loading_comments: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].loading_comments : null
+    comments: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].comments : null,
+    loading_comments: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].loading_comments : null
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExistingCommentsContainer)

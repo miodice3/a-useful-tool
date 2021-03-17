@@ -15,6 +15,9 @@ class CommentInput extends PureComponent {
     handleSubmit = event =>{
         event.preventDefault()
         this.props.createCommentAPI(this.props.fedID_number, this.props.selector, this.state.comment)
+        this.setState({
+            comment: ""
+        })
     }
 
     render(){
