@@ -96,12 +96,8 @@ class VehicleContainer extends PureComponent {
                                 <p class="card-text">Have something to say about a particular vehicle?  Please select the vehicle and post your comment.</p>
                                 <VehicleSelectionContainer selector="Comment" />
                             </div>
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Submit Comment!</a>
-                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
