@@ -1,11 +1,34 @@
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
+    darkMode: darkModeReducer,
     forecasts: forecastsReducer,
     vehicles: yearsReducer
 })
 
 export default rootReducer;
+
+function darkModeReducer(state={darkMode: false}, action){ switch (action.type){
+
+    case 'TOGGLE_DARK_MODE':
+
+        if (state.darkMode == true){
+            return {
+                ...state,
+                darkMode: false
+            }    
+        } else {
+            return {
+                ...state,
+                darkMode: true
+            }
+        }
+
+
+default:
+    return state;
+
+}}
 
 function forecastsReducer(state={}, action){ switch (action.type){
 

@@ -42,25 +42,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(null, mapDispatchToProps)(CommentsContainer)
-
-// createCommentAPI = (comment)=>{
-//     this.props.createCommentAPI(this.props.fedID_number, this.props.selector, comment)
-// }
-
-// renderCommentsContainer = ()=>{
-//     // debugger
-//     // if (this.props.comments){
-//     //     return <CommentsContainer />
-//     // }
-//     debugger
-//     return <CommentsContainer fedID_number={this.props.fedID_number} retrieveCommentsAPI={this.props.retrieveCommentsAPI}/>
-// }
-
-// renderCommentInput = ()=>{
-//     if (this.props.selector === "Comment" && this.props.fedID_number){
-//         return <CommentInput
-//         createCommentAPI={this.props.createCommentAPI}
-//         selector={this.props.selector}
-//         fedID_number={this.props.fedID_number}/>
-//     }
-// }

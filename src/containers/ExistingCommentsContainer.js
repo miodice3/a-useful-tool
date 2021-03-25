@@ -17,22 +17,13 @@ class ExistingCommentsContainer extends PureComponent {
                 </ul>
                 )
         } else {
-            return "loading comments from backend"
+            return "loading comments"
         }
-    }
-
-    renderComments = () => {
-        return(
-        <ul>
-            {this.props.comments.map((comment, index) => <li><Comment key={index} comment={comment}/></li>)}
-        </ul>
-        )
     }
 
     render(){
         return(
             <div>
-                {/* {this.renderComments()} */}
                 {this.loadingComments()}
             </div>
         )

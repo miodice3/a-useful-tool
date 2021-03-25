@@ -16,6 +16,7 @@ class App extends React.Component {
     return (
       <Router>
         <NavBar />
+        {/* <DarkMode /> */}
         <div style={{paddingTop: "55px"}}>
           <Route exact path='/' component={LandingPage}/>
           <Route exact path="/nationalgrid" component={NationalGridContainer} />
