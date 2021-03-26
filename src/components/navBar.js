@@ -33,7 +33,6 @@ class NavBar extends Component{
             </div>
             </nav>
         );
-    
     }
 }
 
@@ -42,6 +41,5 @@ function mapStateToProps(state){
         darkMode: state.darkMode.darkMode
     }  
 }
-
 
 export default connect(mapStateToProps)(NavBar);

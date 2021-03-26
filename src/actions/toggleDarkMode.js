@@ -1,5 +1,3 @@
-// TOGGLE_DARK_MODE
-
 export default function toggleDarkMode(){
 
     return (dispatch) => {

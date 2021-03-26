@@ -11,13 +11,13 @@ class DarkMode extends React.Component {
 
     render(){
         let value = this.props.darkMode ? "Turn off Dark Mode" : "Turn on Dark Mode"
+
         return(
             <form onClick={this.handleSubmit}>
                 <input type="button" value={value}></input>
             </form>
         )
     }
-
 }
 
 function mapDispatchToProps(dispatch){
@@ -32,5 +32,10 @@ function mapStateToProps(state){
     }  
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(DarkMode)
+
+
+
+
+
+

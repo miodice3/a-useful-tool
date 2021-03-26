@@ -12,18 +12,10 @@ function darkModeReducer(state={darkMode: false}, action){ switch (action.type){
 
     case 'TOGGLE_DARK_MODE':
 
-        if (state.darkMode == true){
-            return {
-                ...state,
-                darkMode: false
-            }    
-        } else {
-            return {
-                ...state,
-                darkMode: true
-            }
-        }
-
+        return {
+            ...state,       
+            darkMode: !state.darkMode
+          }
 
 default:
     return state;
