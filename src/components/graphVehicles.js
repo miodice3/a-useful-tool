@@ -3,11 +3,17 @@ import ReactApexChart from 'react-apexcharts';
 function VehicleGraph(props){
 
       let series = [{
-        name: `${props.vehicle_a.selectedYear} ${props.vehicle_a.selectedManufacturer} ${props.vehicle_a.selectedModel} - ${props.vehicle_a.vehicle_fuel_type}`,
+        name: `${props.vehicle_a.selectedYear ? props.vehicle_a.selectedYear : "Select Year"}
+         ${props.vehicle_a.selectedManufacturer ? props.vehicle_a.selectedManufacturer : ""}
+         ${props.vehicle_a.selectedModel ? props.vehicle_a.selectedModel : ""}
+         ${props.vehicle_a.vehicle_fuel_type ? props.vehicle_a.vehicle_fuel_type : ""}`,
         data: [0, 0]
       }, {
-        name: `${props.vehicle_b.selectedYear} ${props.vehicle_b.selectedManufacturer} ${props.vehicle_b.selectedModel} - ${props.vehicle_b.vehicle_fuel_type}`,
-        data: [0, 0]
+        name: `${props.vehicle_b.selectedYear ? props.vehicle_b.selectedYear : "Select Year"}
+        ${props.vehicle_b.selectedManufacturer ? props.vehicle_b.selectedManufacturer : ""}
+        ${props.vehicle_b.selectedModel ? props.vehicle_b.selectedModel : ""}
+        ${props.vehicle_b.vehicle_fuel_type ? props.vehicle_b.vehicle_fuel_type : ""}`,
+       data: [0, 0]
       }];
 
     let options = {
