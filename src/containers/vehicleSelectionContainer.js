@@ -114,7 +114,7 @@ class VehicleSelectionContainer extends PureComponent {
 
 const mapStateToProps = (state, existingProps) => ({
     ...existingProps,
-    years: state.vehicles.vehicles.[existingProps.selector] ? state.vehicles.vehicles.[existingProps.selector].years : [],
+    years: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].years : [],
 
     requesting_year: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].loading : true,
     selectedYear: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].selectedYear : null,
