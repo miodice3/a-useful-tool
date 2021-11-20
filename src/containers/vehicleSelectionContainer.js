@@ -10,12 +10,8 @@ import getModelAPI from '../actions/getModelAPI'
 
 
 import getVehicleAPI from '../actions/getVehicleAPI'
-import retrieveCommentsAPI from '../actions/retrieveCommentsAPI'
-import createCommentAPI from '../actions/createCommentAPI'
 
 import Vehicle from '../components/vehicle'
-
-import CommentsContainer from '../containers/CommentsContainer'
 
 import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
@@ -106,7 +102,6 @@ class VehicleSelectionContainer extends PureComponent {
                 {this.renderManufacturers()}
                 {this.renderModels()}
                 {this.renderVehicle()}
-                <CommentsContainer fedID_number={this.props.fedID_number} selector={this.props.selector}/>
             </div>
         )
     }
@@ -132,9 +127,7 @@ const mapStateToProps = (state, existingProps) => ({
     vehicle_a_detail_requested: state.vehicle_a_detail_requested,
     fedID_number: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].fedID_number : null,
 
-    requesting_vehicle: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].requesting_vehicle : null,
-    comments: state.vehicles[existingProps.selector] ? state.vehicles[existingProps.selector].comments : null,
-
+    requesting_vehicle: state.vehicles.vehicles[existingProps.selector] ? state.vehicles.vehicles[existingProps.selector].requesting_vehicle : null
 })
 
 function mapDispatchToProps(dispatch){
@@ -149,10 +142,7 @@ function mapDispatchToProps(dispatch){
         setSelectedModel: (selectedModel, selector) => dispatch(setSelectedModel(selectedModel, selector)),
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
-        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
-
-        retrieveCommentsAPI: (fedID_number, selector, event) => dispatch(retrieveCommentsAPI(fedID_number, selector, event)),
-        createCommentAPI: (fedID_number, selector, event) => dispatch(createCommentAPI(fedID_number, selector, event))
+        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
     }  
 }
 
