@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import MfgWeight from '../components/mfgWeight'
 import YearInput from '../components/yearInput'
 import getYearAPI from '../actions/getYearAPI'
 
@@ -17,6 +18,8 @@ import getVehicleDetailsAPI from '../actions/getVehicleDetailsAPI'
 import setSelectedYear from '../actions/setSelectedYear'
 import setSelectedManufacturer from '../actions/setSelectedManufacturer'
 import setSelectedModel from '../actions/setSelectedModel'
+
+import setMfgWeight from '../actions/setMfgWeight'
 
 import { connect } from 'react-redux';
 
@@ -95,9 +98,14 @@ class VehicleSelectionContainer extends PureComponent {
         this.props.getVehicleDetailsAPI(this.props.fedID_number, this.props.selector)
     }
 
+    updateMfgWeight = (weight) => {
+        this.props.setMfgWeight(this.props.selector, weight)
+    }
+
     render(){
         return(
             <div>
+                <MfgWeight updateMfgWeight={this.updateMfgWeight}/>
                 {this.renderYear()}
                 {this.renderManufacturers()}
                 {this.renderModels()}
@@ -142,8 +150,10 @@ function mapDispatchToProps(dispatch){
         setSelectedModel: (selectedModel, selector) => dispatch(setSelectedModel(selectedModel, selector)),
 
         getVehicleAPI: (year, manufacture, model, selector) => dispatch(getVehicleAPI(year, manufacture, model, selector)),
-        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector))
-    }  
+        getVehicleDetailsAPI: (selected, selector) => dispatch(getVehicleDetailsAPI(selected, selector)),
+        setMfgWeight: (selector, weight) => dispatch(setMfgWeight(selector, weight))
+    
+      }  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VehicleSelectionContainer)

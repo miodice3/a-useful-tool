@@ -51,6 +51,18 @@ function yearsReducer(state={vehicles: {} }, action){ switch (action.type){
             }
             return newState
 
+        case 'WEIGHT_SET':
+            var newState = {
+                ...state
+            }
+
+            vehicle = state.vehicles[action.selector]
+            newState.vehicles[action.selector] = {
+                ...vehicle,
+                kgweight: action.payload
+            }
+            return newState
+
         case 'ADD_YEAR':
             var newState = {
                 ...state

@@ -3,11 +3,17 @@ import ReactApexChart from 'react-apexcharts';
 function VehicleGraph(props){
 
       let series = [{
-        name: `${props.vehicle_a.selectedYear} ${props.vehicle_a.selectedManufacturer} ${props.vehicle_a.selectedModel} - ${props.vehicle_a.vehicle_fuel_type}`,
+        name: `${props.vehicle_a.selectedYear ? props.vehicle_a.selectedYear : "Select Year"}
+         ${props.vehicle_a.selectedManufacturer ? props.vehicle_a.selectedManufacturer : ""}
+         ${props.vehicle_a.selectedModel ? props.vehicle_a.selectedModel : ""}
+         ${props.vehicle_a.vehicle_fuel_type ? props.vehicle_a.vehicle_fuel_type : ""}`,
         data: [0, 0]
       }, {
-        name: `${props.vehicle_b.selectedYear} ${props.vehicle_b.selectedManufacturer} ${props.vehicle_b.selectedModel} - ${props.vehicle_b.vehicle_fuel_type}`,
-        data: [0, 0]
+        name: `${props.vehicle_b.selectedYear ? props.vehicle_b.selectedYear : "Select Year"}
+        ${props.vehicle_b.selectedManufacturer ? props.vehicle_b.selectedManufacturer : ""}
+        ${props.vehicle_b.selectedModel ? props.vehicle_b.selectedModel : ""}
+        ${props.vehicle_b.vehicle_fuel_type ? props.vehicle_b.vehicle_fuel_type : ""}`,
+       data: [0, 0]
       }];
 
     let options = {
@@ -38,33 +44,39 @@ function VehicleGraph(props){
       }
 
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+      let kg_vehicle_a = parseInt(props.vehicle_a.kgweight ? props.vehicle_a.kgweight : 0);
+      let kg_vehicle_b = parseInt(props.vehicle_b.kgweight ? props.vehicle_b.kgweight : 0);
+
       let mileage = [0, 18750, 37500, 56250, 75000, 93750, 112500, 131250, 150000]
 
+      //TODO: invert logic, remove first evaluation
       if (props.forecasts === undefined) {
       } else {
         if (props.vehicle_a.vehicle_fuel_type !== "Electricity"){
-          series[0].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_a.vehicle_emissions / 1000)))
+          series[0].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_a.vehicle_emissions / 1000)) + kg_vehicle_a)
 
         } else if (props.vehicle_a.vehicle_fuel_type === "Electricity") {          
           let total_forecast_a = props.forecasts.map(forecast=>forecast.intensity.forecast)
           let summed_forecast_a = total_forecast_a.reduce(reducer)
           let avg_g_mile_a = (Math.round(summed_forecast_a / total_forecast_a.length))
 
-          series[0].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile_a/props.vehicle_a.vehicle_emissions / 1000)))
+          series[0].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile_a/props.vehicle_a.vehicle_emissions / 1000)) + kg_vehicle_a)
         }
       }
 
+      //TODO: evaluate if needed
       if (props.forecasts === undefined) {
       } else {
         if (props.vehicle_b.vehicle_fuel_type !== "Electricity"){
-          series[1].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_b.vehicle_emissions / 1000)))
+          series[1].data = mileage.map((miles)=> (Math.round(miles * props.vehicle_b.vehicle_emissions / 1000)) + kg_vehicle_b)
 
         } else if (props.vehicle_b.vehicle_fuel_type === "Electricity") {
           let total_forecast = props.forecasts.map(forecast=>forecast.intensity.forecast)
           let summed_forecast = total_forecast.reduce(reducer)
           let avg_g_mile = (Math.round(summed_forecast / total_forecast.length))
 
-          series[1].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile/props.vehicle_b.vehicle_emissions / 1000)))
+          series[1].data = mileage.map((miles)=> (Math.round(miles * avg_g_mile/props.vehicle_b.vehicle_emissions / 1000)) + kg_vehicle_b)
         }
       }
 
