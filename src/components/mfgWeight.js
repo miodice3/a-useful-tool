@@ -3,12 +3,11 @@ import React, { PureComponent} from 'react';
 class MfgWeight extends PureComponent {
 
   state = {
-    mfgWeight: undefined
   }
 
   mfgWeight = (event) => {
     this.setState({
-      mfgWeight: parseInt(event.target.value)
+      mfgWeight: (event.target.value ? event.target.value : 0)
     })
   }
 
@@ -25,8 +24,7 @@ class MfgWeight extends PureComponent {
         <label>
             Input weight of CO2 used to mfg automobile in KG
         </label><br/>
-        <input type="text"
-        pattern="[0-9]*"
+        <input type="number"
         onChange={this.mfgWeight}
         value={this.state.mfgWeight}
         placeholder="12500"
